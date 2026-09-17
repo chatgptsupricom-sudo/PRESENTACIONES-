@@ -287,8 +287,6 @@ img{max-width:100%;display:block}
 @media(max-width:1200px){
   .slide-inner{padding:40px 36px}
   .oportunidad-grid,.fuerza-slide .slide-inner,.operaciones-slide .slide-inner{grid-template-columns:1fr;gap:36px}
-  .oportunidad-slide .slide-inner{flex-direction:column;gap:28px}
-  .mapa-box{width:100%;height:auto;aspect-ratio:4/3;max-height:340px;flex:none}
   .quienes-slide .slide-inner{grid-template-columns:1fr;gap:32px}
   .canal-grid,.categorias-grid{grid-template-columns:repeat(2,1fr)}
   .stats-row{gap:16px}
@@ -319,11 +317,14 @@ img{max-width:100%;display:block}
   .mobile-nav{display:flex}
 
   /* Grids single column */
+  .oportunidad-slide .slide-inner{flex-direction:column;gap:28px}
+  .mapa-box{width:auto;max-width:100%;height:auto;aspect-ratio:1792/2400;max-height:46vh;
+    margin:0 auto;flex:none}
+  .mapa-box img{object-fit:contain;object-position:center}
   .canal-grid,.sellout-grid,.alianzas-grid,.contacto-grid{grid-template-columns:1fr;gap:14px}
   .categorias-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .stats-row{grid-template-columns:1fr;gap:14px}
   .stat-block[style*='visibility:hidden']{display:none}
-  .mapa-box{aspect-ratio:16/10;max-height:260px}
 
   /* Hero */
   .hero-logo{width:200px}
@@ -403,7 +404,7 @@ img{max-width:100%;display:block}
   .cat-card p{font-size:.72rem}
   .marcas-count{font-size:1.8rem}
   .marcas-slide h2{font-size:1.15rem}
-  .marcas-slide .slide-inner{padding-top:24px}
+  .marcas-slide .slide-inner{padding-top:24px;justify-content:center}
   .marcas-slide .brands-bg{padding-top:50px}
   .card-badge{font-size:.5rem;padding:3px 7px}
   .card-type{font-size:.6rem;padding:3px 8px}
