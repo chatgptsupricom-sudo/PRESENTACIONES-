@@ -158,7 +158,8 @@ img{max-width:100%;display:block}
 .fuerza-item h3{font-size:.92rem;margin-bottom:3px}
 .fuerza-item p{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.5}
 .fuerza-visual{position:relative;border-radius:var(--radius);overflow:hidden}
-.fuerza-visual img{width:100%;border-radius:var(--radius)}
+.fuerza-visual{max-height:100%}
+.fuerza-visual img{width:100%;height:100%;max-height:100%;object-fit:cover;border-radius:var(--radius)}
 .fuerza-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,85,204,.2),transparent);border-radius:var(--radius)}
 .sellout-slide{background:var(--bg-white)}
 .sellout-slide::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='%230088FF' stroke-width='0.5' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
@@ -190,7 +191,8 @@ img{max-width:100%;display:block}
 .op-item h3{font-size:.88rem;margin-bottom:3px}
 .op-item p{font-size:.82rem;color:var(--text-secondary);line-height:1.5}
 .op-visual{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card)}
-.op-visual img{width:100%;border-radius:var(--radius)}
+.op-visual{max-height:100%}
+.op-visual img{width:100%;height:100%;max-height:100%;object-fit:cover;border-radius:var(--radius)}
 .op-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(0,85,204,.18),transparent);border-radius:var(--radius)}
 .marcas-slide{background:var(--bg-white);color:var(--text-dark);position:relative}
 .marcas-slide::before{content:'';position:absolute;top:-80px;right:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(0,136,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none;z-index:0}
@@ -239,6 +241,26 @@ img{max-width:100%;display:block}
 .footer-text{color:rgba(255,255,255,.3);font-size:.75rem}
 
 /* RESPONSIVE */
+
+@media(min-width:769px) and (max-width:1200px){
+  .cat-card{aspect-ratio:auto;min-height:0}
+  .cat-card-content{min-height:210px}
+  .categorias-grid{max-width:760px}
+}
+
+@media(min-width:769px) and (max-height:860px){
+  .slide-inner{padding:26px 40px}
+  .fuerza-items{gap:14px}
+  .stats-row{gap:14px}
+}
+
+.lang-toggle{position:fixed;top:14px;right:16px;z-index:1002;display:flex;gap:2px;padding:3px;border-radius:50px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lang-toggle.light{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.12)}
+.lang-btn{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:1px;padding:6px 12px;border:0;border-radius:50px;background:transparent;color:rgba(255,255,255,.6);cursor:pointer;transition:all .25s;min-height:32px}
+.lang-toggle.light .lang-btn{color:var(--text-secondary)}
+.lang-btn.active{background:var(--gradient-blue);color:#fff}
+.lang-toggle.light .lang-btn.active{color:#fff}
+
 @media(max-width:1200px){
   .slide-inner{padding:40px 36px}
   .oportunidad-grid,.fuerza-slide .slide-inner,.operaciones-slide .slide-inner{grid-template-columns:1fr;gap:36px}
@@ -250,12 +272,16 @@ img{max-width:100%;display:block}
 
 @media(max-width:768px){
   /* Mobile vertical scroll with snap */
-  html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  html{scroll-snap-type:y proximity;scroll-behavior:smooth}
   html,body{overflow-y:auto;overflow-x:hidden;height:auto}
   .presentation-viewport{overflow:visible;height:auto}
   .presentation{flex-direction:column;transform:none!important;height:auto}
-  .slide{min-width:100%;width:100%;min-height:100vh;height:100vh;scroll-snap-align:start;scroll-snap-stop:always;border-bottom:none}
+  .slide{min-width:100%;width:100%;min-height:100vh;min-height:100dvh;height:auto;scroll-snap-align:start;border-bottom:none}
+  .slide-inner{height:auto;min-height:100vh;min-height:100dvh}
   .slide-inner{padding:36px 20px 110px;align-items:flex-start;justify-content:flex-start}
+
+  .lang-toggle{top:10px;right:10px}
+  .lang-btn{padding:7px 12px;font-size:.68rem}
   .hero-slide .slide-inner{justify-content:center;padding-top:48px;padding-bottom:110px;align-items:center;text-align:center}
 
   /* Navigation */
@@ -362,6 +388,10 @@ img{max-width:100%;display:block}
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
+<div class="lang-toggle" id="langToggle">
+  <button class="lang-btn active" data-lang="es" aria-label="Espanol">ES</button>
+  <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+</div>
 <div class="nav-controls">
   <div class="nav-counter dark" id="navCounter">01 / 12</div>
   <div class="nav-arrows">
@@ -611,6 +641,8 @@ img{max-width:100%;display:block}
     mobilePrev.disabled=current===0;
     mobileNext.disabled=current===totalSlides-1;
     mobileCounter.textContent=text;
+    const lt=document.getElementById('langToggle');
+    if(lt)lt.classList.toggle('light',bg==='light');
   }
 
   function swapActive(){slides.forEach((s,i)=>s.classList.toggle('active',i===current))}
@@ -677,6 +709,153 @@ img{max-width:100%;display:block}
 
   updateNavUI();
   swapActive();
+})();
+</script>
+
+<script>
+(function(){
+  const EN={
+"Plataforma Multinacional de Distribución Mayorista de Tecnología":"Multinational Wholesale Technology Distribution Platform",
+"Conectamos a los principales fabricantes":"We connect the world's leading",
+"globales de hardware":"hardware manufacturers",
+"con mercados B2B de alta demanda":"with high-demand B2B markets",
+"Estados Unidos, Panamá y Venezuela — Cero venta al detal — Protección absoluta de márgenes":"United States, Panama and Venezuela — Zero retail sales — Absolute margin protection",
+"Quiénes Somos":"Who We Are",
+"Más de dos décadas liderando la distribución mayorista de tecnología":"Over two decades leading wholesale technology distribution",
+"Fundada en 2004, SUPRICOM opera como la plataforma comercial y logística estratégica para fabricantes internacionales en el eje norte de la región. Conectamos directamente marcas globales de tecnología con una red calificada de miles de revendedores, cadenas de retail especializado, integradores de sistemas y cuentas corporativas. Gestionamos un portafolio robusto multicategoría: desde hardware de misión crítica (infraestructura de redes, videovigilancia CCTV, respaldo eléctrico UPS y componentes) hasta soluciones de alta rotación (laptops, mini PCs, sistemas de impresión, almacenamiento masivo, periféricos y consumibles).":"Founded in 2004, SUPRICOM operates as the strategic commercial and logistics platform for international manufacturers across the region's northern axis. We connect global technology brands directly with a qualified network of thousands of resellers, specialized retail chains, system integrators and corporate accounts. We manage a robust multi-category portfolio: from mission-critical hardware (network infrastructure, CCTV surveillance, UPS power backup and components) to high-turnover solutions (laptops, mini PCs, printing systems, mass storage, peripherals and consumables).",
+"Nuestra Misión":"Our Mission",
+"Proveer a nuestra red de revendedores, integradores y clientes corporativos el acceso más eficiente, continuo y rentable a soluciones integrales de hardware y tecnología. Respaldamos su operación diaria mediante una infraestructura logística multisede y un inventario planificado que asegura disponibilidad y protección de márgenes comerciales.":"To provide our network of resellers, integrators and corporate clients with the most efficient, continuous and profitable access to complete hardware and technology solutions. We support their daily operation through a multi-site logistics infrastructure and planned inventory that ensures availability and protects commercial margins.",
+"Nuestra Visión":"Our Vision",
+"Consolidar a SUPRICOM como la plataforma de distribución mayorista de tecnología de referencia en el eje norte de la región, posicionándonos como el canal de entrada y expansión indispensable para fabricantes globales que buscan penetración profunda, cumplimiento operativo y colocación sostenible de inventario.":"To consolidate SUPRICOM as the benchmark wholesale technology distribution platform in the region's northern axis, positioning ourselves as the essential entry and expansion channel for global manufacturers seeking deep market penetration, operational compliance and sustainable inventory placement.",
+"Solidez operativa y escala comercial comprobada":"Proven operational strength and commercial scale",
+"Más de dos décadas construyendo el canal de distribución tecnológica más confiable de la región":"Over two decades building the region's most reliable technology distribution channel",
+"Modelo 100% B2B — Cero venta al detal":"100% B2B model — Zero retail sales",
+"Años de Trayectoria":"Years of Experience",
+"Distribución mayorista B2B fundada en Venezuela en 2004 y expandida a Panamá y Estados Unidos":"B2B wholesale distribution founded in Venezuela in 2004 and expanded to Panama and the United States",
+"Sedes Operativas":"Operating Sites",
+"Miami (EE.UU.), Ciudad de Panamá, Caracas y Valencia (Venezuela)":"Miami (USA), Panama City, Caracas and Valencia (Venezuela)",
+"Clientes Activos":"Active Clients",
+"Exclusivamente tiendas IT, integradores certificados y revendedores corporativos":"Exclusively IT stores, certified integrators and corporate resellers",
+"Marcas Globales":"Global Brands",
+"HP, Epson, Canon, TP-Link, Dahua, Hikvision, Forza, Kingston y más":"HP, Epson, Canon, TP-Link, Dahua, Hikvision, Forza, Kingston and more",
+"Almacenamiento Centralizado":"Centralized Warehousing",
+"Instalaciones logísticas propias para resguardo, palletizado y despacho de carga internacional":"Own logistics facilities for storage, palletizing and international freight dispatch",
+"Mercado Regional":"Regional Market",
+"Oportunidad regional:":"Regional opportunity:",
+"Presencia activa en tres mercados estratégicos":"Active presence in three strategic markets",
+"Acceso formal y seguro: facturación local en cada país, cumplimiento fiscal formal y distribución canalizada únicamente mediante comercios registrados.":"Formal and secure access: local invoicing in each country, full tax compliance and distribution channeled solely through registered businesses.",
+"Estados Unidos (Miami)":"United States (Miami)",
+"Hub comercial para colocación corporativa, reexportación ágil y operaciones financieras fluidas bajo marco legal estadounidense.":"Commercial hub for corporate placement, agile re-export and smooth financial operations under US legal framework.",
+"Panamá":"Panama",
+"Centro logístico neurálgico, abastecimiento B2B para proyectos corporativos y alta rotación en el canal revendedor local.":"Core logistics center, B2B supply for corporate projects and high turnover in the local reseller channel.",
+"Mercado de alta demanda en renovación de infraestructura tecnológica, respaldo energético, conectividad y seguridad electrónica.":"High-demand market for technology infrastructure renewal, power backup, connectivity and electronic security.",
+"Canal de comercialización calificado":"Qualified sales channel",
+"Cero venta al consumidor final; garantizamos que el producto del fabricante no compita con sus propios revendedores ni sufra canibalización de precios":"Zero sales to end consumers; we guarantee the manufacturer's product never competes with its own resellers nor suffers price cannibalization",
+"Tiendas de Tecnología":"Technology Stores",
+"Nuestra principal fuerza de sell-out y posicionamiento a nivel nacional en vitrinas comerciales.":"Our main sell-out force and nationwide shelf positioning.",
+"Grandes Proyectos":"Large Projects",
+"VARs Corporativos":"Corporate VARs",
+"Revendedores especializados en licitaciones y megaproyectos para sector industrial y privado.":"Resellers specialized in tenders and megaprojects for the industrial and private sectors.",
+"Infraestructura & CCTV":"Infrastructure & CCTV",
+"Integradores de Sistemas":"System Integrators",
+"Especialistas en videovigilancia, redes, infraestructura y soluciones de respaldo eléctrico.":"Specialists in video surveillance, networking, infrastructure and power backup solutions.",
+"Subdistribución":"Sub-distribution",
+"Mayoristas Regionales":"Regional Wholesalers",
+"Red estratégica de subdistribución garantizando cobertura en ciudades y estados secundarios.":"Strategic sub-distribution network ensuring coverage in secondary cities and states.",
+"Presencia consolidada en las categorías líderes":"Consolidated presence in leading categories",
+"Cómputo y Componentes":"Computing & Components",
+"Laptops, mini PCs, procesadores, memorias RAM y almacenamiento SSD (HP, Lenovo, Acer, ASUS, Kingston, AMD Ryzen, Intel).":"Laptops, mini PCs, processors, RAM and SSD storage (HP, Lenovo, Acer, ASUS, Kingston, AMD Ryzen, Intel).",
+"Energía y Respaldo":"Power & Backup",
+"Sistemas UPS interactivos y online, reguladores de voltaje e inversores (Forza, APC, Smartbitt).":"Line-interactive and online UPS systems, voltage regulators and inverters (Forza, APC, Smartbitt).",
+"Impresión y Suministros":"Printing & Supplies",
+"Sistemas continuos, impresión láser corporativa y consumibles originales de alta rotación (Epson, Canon, HP, Brother).":"Continuous ink systems, corporate laser printing and high-turnover original consumables (Epson, Canon, HP, Brother).",
+"Redes y Seguridad CCTV":"Networking & CCTV Security",
+"Enrutadores, switches corporativos, cableado y sistemas Mesh (TP-Link, Hikvision, Dahua, Nexxt).":"Routers, corporate switches, cabling and Mesh systems (TP-Link, Hikvision, Dahua, Nexxt).",
+"Estrategia Comercial":"Commercial Strategy",
+"Fuerza de Ventas Multisede":"Multi-site Sales Force",
+"y rotación acelerada":"and accelerated turnover",
+"Asesores por Territorio":"Territory Account Managers",
+"Asesores comerciales en terreno y ventas internas organizados por territorio en Estados Unidos, Panamá y Venezuela.":"Field sales advisors and inside sales teams organized by territory across the United States, Panama and Venezuela.",
+"Planificación y Reabastecimiento":"Planning & Replenishment",
+"Monitoreo analítico de rotación por SKU para programar órdenes de compra periódicas y prevenir quiebres de stock.":"Analytical SKU-level turnover monitoring to schedule recurring purchase orders and prevent stockouts.",
+"Condiciones Comerciales Competitivas":"Competitive Commercial Terms",
+"Líneas de crédito estructuradas para clientes corporativos calificados, dinamizando la salida del inventario de bodega.":"Structured credit lines for qualified corporate clients, accelerating inventory movement out of the warehouse.",
+"Impulso comercial y desarrollo de marca":"Sales acceleration and brand development",
+"No solo entregamos cajas; construimos el argumento de venta para que nuestro canal defienda la marca del fabricante frente al usuario final.":"We do not just ship boxes; we build the sales argument so our channel defends the manufacturer's brand in front of the end user.",
+"Capacitación Técnica Continua":"Ongoing Technical Training",
+"Webinars y entrenamientos al equipo de ventas del revendedor dominando argumentos del fabricante.":"Webinars and training for the reseller's sales team, mastering the manufacturer's value proposition.",
+"Presencia Física en Punto de Venta":"Physical Presence at Point of Sale",
+"Instalación de material POP y exhibidores garantizando visibilidad preferencial en tiendas.":"POP material and display installation ensuring preferential in-store visibility.",
+"Generación de Demanda B2B":"B2B Demand Generation",
+"Catálogos digitales técnicos y comunicación consultiva enfocada en la rentabilidad, impulsando la rotación de producto.":"Technical digital catalogs and consultative, profitability-focused communication that drives product turnover.",
+"Logística":"Logistics",
+"Operaciones directas y RMA local":"Direct operations and local RMA",
+"Eliminamos intermediarios asumiendo la carga operativa y técnica de la marca.":"We remove intermediaries by absorbing the brand's operational and technical workload.",
+"Gestión Aduanal y Flete":"Customs & Freight Management",
+"Operaciones directas de carga marítima y aérea, nacionalización de mercancía y cumplimiento aduanal formal en cada sede.":"Direct sea and air freight operations, goods nationalization and formal customs compliance at every site.",
+"Servicio Técnico y RMA Local":"Local Technical Service & RMA",
+"Diagnóstico y reposición técnica directa en nuestros centros operativos, eliminando para el fabricante el costo de devoluciones internacionales.":"Diagnosis and direct technical replacement at our operating centers, eliminating international return costs for the manufacturer.",
+"Almacenamiento Especializado":"Specialized Warehousing",
+"Control de acceso, monitoreo climático y trazabilidad por serial para componentes críticos.":"Access control, climate monitoring and serial-level traceability for critical components.",
+"Alianzas comerciales estratégicas":"Strategic commercial partnerships",
+"Modelos de asociación a largo plazo estructurados para el beneficio de fábrica y distribución":"Long-term partnership models structured to benefit both manufacturer and distributor",
+"Estratégico":"Strategic",
+"Distribución Oficial de Marca":"Official Brand Distribution",
+"Acuerdos de representación directa enfocados en el desarrollo mutuo de plaza comercial (VEN/PAN) con compras anuales proyectadas.":"Direct representation agreements focused on joint market development (VEN/PAN) with projected annual purchases.",
+"Continuo":"Ongoing",
+"Programas de Compra y Reposición Programada":"Scheduled Purchase & Replenishment Programs",
+"Compromisos de compra en volumen (FOB/CIF) alineados a la demanda real de nuestras plazas comerciales.":"Volume purchase commitments (FOB/CIF) aligned with real demand in our markets.",
+"Lanzamiento":"Launch",
+"Lanzamiento e Introducción de Líneas":"Product Line Launch & Introduction",
+"Entrada acelerada de nuevas líneas de producto apalancadas en nuestra base de más de 3.000 clientes B2B.":"Accelerated rollout of new product lines leveraging our base of over 3,000 B2B clients.",
+"Nuestro":"Our brand",
+"portafolio":"portfolio",
+"de marcas":"",
+"Marcas globales que confían en SUPRICOM como su canal de distribución en Venezuela y Panamá":"Global brands that trust SUPRICOM as their distribution channel in Venezuela and Panama",
+"Construyamos un canal de":"Let us build a solid",
+"distribución":"distribution",
+"sólido":"channel",
+"Gerente de Compras":"Purchasing Manager",
+"Correo Corporativo":"Corporate Email",
+"Teléfono Directo / WhatsApp":"Direct Phone / WhatsApp",
+"Miami (EE.UU.) · Panamá":"Miami (USA) · Panama",
+"Presentación Corporativa 2026 | Dirección de Desarrollo de Negocios e Importaciones":"Corporate Presentation 2026 | Business Development & Imports Division"
+  };
+  const TITLE_EN='SUPRICOM — Wholesale Technology Distribution';
+  const TITLE_ES=document.title;
+
+  const nodes=[];
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+    acceptNode(n){
+      const p=n.parentElement;
+      if(!p||p.closest('script,style,.lang-toggle'))return NodeFilter.FILTER_REJECT;
+      return n.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+    }
+  });
+  let n;while(n=walker.nextNode())nodes.push([n,n.nodeValue]);
+
+  function setLang(lang){
+    nodes.forEach(function(pair){
+      const node=pair[0],orig=pair[1];
+      if(lang==='es'){node.nodeValue=orig;return}
+      const m=orig.match(/^(\s*)([\s\S]*?)(\s*)$/);
+      const t=EN[m[2]];
+      if(t!==undefined)node.nodeValue=m[1]+t+m[3];
+    });
+    document.documentElement.lang=lang;
+    document.title=lang==='en'?TITLE_EN:TITLE_ES;
+    document.querySelectorAll('#langToggle .lang-btn').forEach(function(b){b.classList.toggle('active',b.dataset.lang===lang)});
+    try{localStorage.setItem('supricom-lang',lang)}catch(e){}
+  }
+
+  document.getElementById('langToggle').addEventListener('click',function(e){
+    const b=e.target.closest('.lang-btn');
+    if(b)setLang(b.dataset.lang);
+  });
+
+  let saved='es';
+  try{saved=localStorage.getItem('supricom-lang')||'es'}catch(e){}
+  if(saved==='en')setLang('en');
 })();
 </script>
 </body>
