@@ -264,6 +264,8 @@ img{max-width:100%;display:block}
 @media(max-width:1200px){
   .slide-inner{padding:40px 36px}
   .oportunidad-grid,.fuerza-slide .slide-inner,.operaciones-slide .slide-inner{grid-template-columns:1fr;gap:36px}
+  .oportunidad-slide .slide-inner{flex-direction:column;gap:28px}
+  .mapa-box{width:100%;height:auto;aspect-ratio:4/3;max-height:340px;flex:none}
   .quienes-slide .slide-inner{grid-template-columns:1fr;gap:32px}
   .canal-grid,.categorias-grid{grid-template-columns:repeat(2,1fr)}
   .stats-row{gap:16px}
@@ -276,8 +278,12 @@ img{max-width:100%;display:block}
   html,body{overflow-y:auto;overflow-x:hidden;height:auto}
   .presentation-viewport{overflow:visible;height:auto}
   .presentation{flex-direction:column;transform:none!important;height:auto}
-  .slide{min-width:100%;width:100%;min-height:100vh;min-height:100dvh;height:auto;scroll-snap-align:start;border-bottom:none}
-  .slide-inner{height:auto;min-height:100vh;min-height:100dvh}
+  .slide{min-width:100%;width:100%;min-height:100vh;min-height:100dvh;height:auto;scroll-snap-align:start;border-bottom:none;display:flex;flex-direction:column}
+  .slide-inner{height:auto;min-height:0;flex:1 0 auto}
+  /* Slides are taller than the viewport, so reveal on intersection, not on .active */
+  .slide.in-view .reveal,.slide.in-view .reveal-left,.slide.in-view .reveal-right,.slide.in-view .reveal-scale{opacity:1;transform:none}
+  .slide.in-view .stat-bar-fill{width:var(--target)}
+  .slide.in-view .stat-block::before{transform:scaleX(1)}
   .slide-inner{padding:36px 20px 110px;align-items:flex-start;justify-content:flex-start}
 
   .lang-toggle{top:10px;right:10px}
@@ -293,6 +299,8 @@ img{max-width:100%;display:block}
   .canal-grid,.sellout-grid,.alianzas-grid,.contacto-grid{grid-template-columns:1fr;gap:14px}
   .categorias-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .stats-row{grid-template-columns:1fr;gap:14px}
+  .stat-block[style*='visibility:hidden']{display:none}
+  .mapa-box{aspect-ratio:16/10;max-height:260px}
 
   /* Hero */
   .hero-logo{width:200px}
@@ -702,6 +710,13 @@ img{max-width:100%;display:block}
         });
       },80);
     },{passive:true});
+  }
+
+  if(isMobile()&&'IntersectionObserver'in window){
+    const io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in-view')});
+    },{threshold:.12});
+    slides.forEach(function(s){io.observe(s)});
   }
 
   const pc=document.getElementById('heroParticles');
