@@ -242,6 +242,29 @@ img{max-width:100%;display:block}
 
 /* RESPONSIVE */
 
+.logo-marquee{display:none}
+@media(max-width:768px){
+  /* La tira unica de logos es ilegible en movil: se sustituye por un carrusel */
+  .marcas-slide .brands-bg{display:none}
+  .logo-marquee{display:flex;flex-direction:column;gap:14px;width:100%;margin-top:22px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);
+    mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)}
+  .marquee-row{overflow:hidden}
+  /* El hueco va como margin, no como gap: asi cada mitad mide exactamente lo mismo
+     y el translateX(-50%) cae justo en la costura, sin salto */
+  .marquee-track{display:flex;align-items:center;width:max-content;will-change:transform;
+    animation:marqueeScroll linear infinite}
+  .marquee-track img{height:30px;width:auto;object-fit:contain;flex:none;margin-right:26px}
+  .r1 .marquee-track{animation-duration:38s}
+  .r2 .marquee-track{animation-duration:46s;animation-direction:reverse}
+  .r3 .marquee-track{animation-duration:42s}
+  @keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){
+    .marquee-track{animation:none}
+    .marquee-row{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  }
+}
+
 @media(min-width:769px) and (max-width:1200px){
   .cat-card{aspect-ratio:auto;min-height:0}
   .cat-card-content{min-height:210px}
@@ -594,7 +617,13 @@ img{max-width:100%;display:block}
       <h2 class="reveal">Nuestro <span class="hl">portafolio</span> de marcas</h2>
       <div class="marcas-count reveal s1">60+</div>
       <p class="reveal s2">Marcas globales que confían en SUPRICOM como su canal de distribución en Venezuela y Panamá</p>
+      <div class="logo-marquee" aria-label="Marcas distribuidas por SUPRICOM">
+        <div class="marquee-row r1"><div class="marquee-track"><img src="logos/acer.webp" alt="acer" decoding="async"><img src="logos/aoc.webp" alt="aoc" decoding="async"><img src="logos/biostar.webp" alt="biostar" decoding="async"><img src="logos/canon.webp" alt="canon" decoding="async"><img src="logos/epson.webp" alt="epson" decoding="async"><img src="logos/havit.webp" alt="havit" decoding="async"><img src="logos/ikea.webp" alt="ikea" decoding="async"><img src="logos/lenovo.webp" alt="lenovo" decoding="async"><img src="logos/mercusys.webp" alt="mercusys" decoding="async"><img src="logos/osc.webp" alt="osc" decoding="async"><img src="logos/samsung.webp" alt="samsung" decoding="async"><img src="logos/toshiba.webp" alt="toshiba" decoding="async"><img src="logos/xiaomi.webp" alt="xiaomi" decoding="async"><img src="logos/acer.webp" alt="acer" decoding="async"><img src="logos/aoc.webp" alt="aoc" decoding="async"><img src="logos/biostar.webp" alt="biostar" decoding="async"><img src="logos/canon.webp" alt="canon" decoding="async"><img src="logos/epson.webp" alt="epson" decoding="async"><img src="logos/havit.webp" alt="havit" decoding="async"><img src="logos/ikea.webp" alt="ikea" decoding="async"><img src="logos/lenovo.webp" alt="lenovo" decoding="async"><img src="logos/mercusys.webp" alt="mercusys" decoding="async"><img src="logos/osc.webp" alt="osc" decoding="async"><img src="logos/samsung.webp" alt="samsung" decoding="async"><img src="logos/toshiba.webp" alt="toshiba" decoding="async"><img src="logos/xiaomi.webp" alt="xiaomi" decoding="async"></div></div>
+        <div class="marquee-row r2"><div class="marquee-track"><img src="logos/adata.webp" alt="adata" decoding="async"><img src="logos/apc.webp" alt="apc" decoding="async"><img src="logos/bluetti.webp" alt="bluetti" decoding="async"><img src="logos/compaq.webp" alt="compaq" decoding="async"><img src="logos/ezviz.webp" alt="ezviz" decoding="async"><img src="logos/hikvision.webp" alt="hikvision" decoding="async"><img src="logos/kingston.webp" alt="kingston" decoding="async"><img src="logos/linksys.webp" alt="linksys" decoding="async"><img src="logos/msi.webp" alt="msi" decoding="async"><img src="logos/primus.webp" alt="primus" decoding="async"><img src="logos/smartbitt.webp" alt="smartbitt" decoding="async"><img src="logos/tp-link.webp" alt="tp-link" decoding="async"><img src="logos/xtech.webp" alt="xtech" decoding="async"><img src="logos/adata.webp" alt="adata" decoding="async"><img src="logos/apc.webp" alt="apc" decoding="async"><img src="logos/bluetti.webp" alt="bluetti" decoding="async"><img src="logos/compaq.webp" alt="compaq" decoding="async"><img src="logos/ezviz.webp" alt="ezviz" decoding="async"><img src="logos/hikvision.webp" alt="hikvision" decoding="async"><img src="logos/kingston.webp" alt="kingston" decoding="async"><img src="logos/linksys.webp" alt="linksys" decoding="async"><img src="logos/msi.webp" alt="msi" decoding="async"><img src="logos/primus.webp" alt="primus" decoding="async"><img src="logos/smartbitt.webp" alt="smartbitt" decoding="async"><img src="logos/tp-link.webp" alt="tp-link" decoding="async"><img src="logos/xtech.webp" alt="xtech" decoding="async"></div></div>
+        <div class="marquee-row r3"><div class="marquee-track"><img src="logos/aerocool.webp" alt="aerocool" decoding="async"><img src="logos/asus.webp" alt="asus" decoding="async"><img src="logos/brother.webp" alt="brother" decoding="async"><img src="logos/dell.webp" alt="dell" decoding="async"><img src="logos/forza.webp" alt="forza" decoding="async"><img src="logos/hp.webp" alt="hp" decoding="async"><img src="logos/klipxtreme.webp" alt="klipxtreme" decoding="async"><img src="logos/logitech.webp" alt="logitech" decoding="async"><img src="logos/nexxt.webp" alt="nexxt" decoding="async"><img src="logos/redragon.webp" alt="redragon" decoding="async"><img src="logos/targus.webp" alt="targus" decoding="async"><img src="logos/xerox.webp" alt="xerox" decoding="async"><img src="logos/aerocool.webp" alt="aerocool" decoding="async"><img src="logos/asus.webp" alt="asus" decoding="async"><img src="logos/brother.webp" alt="brother" decoding="async"><img src="logos/dell.webp" alt="dell" decoding="async"><img src="logos/forza.webp" alt="forza" decoding="async"><img src="logos/hp.webp" alt="hp" decoding="async"><img src="logos/klipxtreme.webp" alt="klipxtreme" decoding="async"><img src="logos/logitech.webp" alt="logitech" decoding="async"><img src="logos/nexxt.webp" alt="nexxt" decoding="async"><img src="logos/redragon.webp" alt="redragon" decoding="async"><img src="logos/targus.webp" alt="targus" decoding="async"><img src="logos/xerox.webp" alt="xerox" decoding="async"></div></div>
+      </div>
     </div>
+
     <div class="marcas-bottom-bar"></div>
   </div>
 
