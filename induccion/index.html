@@ -92,7 +92,7 @@ img{max-width:100%;display:block}
 /* SLIDE 2: PROPOSITO */
 .proposito-slide{background:var(--supri-dark);color:white;position:relative}
 .proposito-slide::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(0,119,221,.12) 0%,transparent 55%);z-index:1}
-.proposito-slide .slide-inner{flex-direction:column;gap:32px;width:100%}
+.proposito-slide .slide-inner{gap:32px}
 .proposito-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%}
 .prop-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:32px;backdrop-filter:blur(10px);transition:all .3s}
 .prop-card:hover{background:rgba(255,255,255,.08);transform:translateY(-4px)}
@@ -106,7 +106,6 @@ img{max-width:100%;display:block}
 
 /* SLIDE 3: VALORES */
 .valores-slide{background:#FFFFFF;position:relative}
-.valores-slide .slide-inner{flex-direction:column;gap:32px;width:100%}
 .valores-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%}
 .valor-card{background:linear-gradient(135deg,#0077DD,#00AAFF);border-radius:var(--radius);padding:28px 24px;transition:all .3s;position:relative;overflow:hidden;color:white}
 .valor-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.3);transform:scaleX(0);transition:transform .3s}
@@ -131,7 +130,6 @@ img{max-width:100%;display:block}
 
 /* SLIDE 5: MARCAS */
 .marcas-slide{background:white;text-align:center}
-.marcas-slide .slide-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%}
 .brands-container{overflow:hidden;margin:32px 0;position:relative;width:100%}
 .brands-container::before,.brands-container::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
 .brands-container::before{left:0;background:linear-gradient(to right,white,transparent)}
@@ -145,7 +143,6 @@ img{max-width:100%;display:block}
 
 /* SLIDE 6: PRIMEROS PASOS */
 .pasos-slide{background:var(--supri-gray);position:relative}
-.pasos-slide .slide-inner{flex-direction:column;gap:32px;width:100%}
 .pasos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%}
 .paso-card{background:white;border-radius:var(--radius);padding:32px 24px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.05);transition:all .3s;border-bottom:3px solid transparent;position:relative}
 .paso-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,119,221,.1);border-bottom-color:var(--supri-blue)}
@@ -158,7 +155,7 @@ img{max-width:100%;display:block}
 .cierre-slide{background:var(--supri-dark);color:white;text-align:center;position:relative}
 .cierre-slide .foto-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.1;z-index:0}
 .cierre-slide::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(0,119,221,.2) 0%,transparent 55%);z-index:1}
-.cierre-slide .slide-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:2;position:relative;width:100%;height:100%}
+.cierre-slide .slide-inner{z-index:2;position:relative}
 .cierre-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700}
 .cierre-line{width:80px;height:4px;background:var(--supri-gradient);border-radius:2px}
 .cierre-msg{font-size:clamp(.9rem,1.5vw,1.1rem);color:rgba(255,255,255,.5);max-width:500px;line-height:1.6}
