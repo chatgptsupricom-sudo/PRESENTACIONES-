@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estrategia de Marketing & Objetivos - Unidad de Climatización SUPRICOM</title>
+  
+  <!-- Tipografías Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --azul-primario: #0056DB;
+      --azul-vibrante: #0791F4;
+      --azul-oscuro: #021a4f;
+      --azul-glow: rgba(7, 145, 244, 0.3);
+      --bg-dark: #070d1e;
+      --slide-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --texto-oscuro: #0f172a;
+      --texto-cuerpo: #334155;
+      --texto-muted: #64748b;
+      --gradiente-azul: linear-gradient(135deg, #0045B5 0%, #0056DB 55%, #0791F4 100%);
+      --gradiente-dark: linear-gradient(135deg, #021235 0%, #00256e 55%, #004ecc 100%);
+      --gradiente-card: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+      --sombra-card: 0 14px 30px -8px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(0, 86, 219, 0.05);
+      --sombra-glow: 0 20px 40px -10px rgba(0, 86, 219, 0.35);
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: var(--bg-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--texto-cuerpo);
+    }
+
+    /* Contenedor Widescreen Completo sin franjas muertas */
+    .deck-viewport {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: var(--slide-bg);
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.99) translateX(25px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: clamp(20px, 2.8vh, 36px) clamp(32px, 4vw, 76px) clamp(80px, 10vh, 100px) clamp(32px, 4vw, 76px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background: var(--slide-bg);
+      z-index: 1;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateX(0);
+      z-index: 2;
+    }
+
+    /* Ambient Glowing Orbs */
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: clamp(340px, 30vw, 550px);
+      height: clamp(340px, 30vw, 550px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(7, 145, 244, 0.16) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .slide::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      left: -120px;
+      width: clamp(360px, 32vw, 580px);
+      height: clamp(360px, 32vw, 580px);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 86, 219, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--texto-oscuro);
+      letter-spacing: -0.02em;
+    }
+
+    .slide-header {
+      margin-bottom: clamp(12px, 1.8vh, 22px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pill-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 13px;
+      border-radius: 100px;
+      background: rgba(7, 145, 244, 0.12);
+      border: 1px solid rgba(7, 145, 244, 0.25);
+      color: var(--azul-primario);
+      font-size: clamp(11px, 0.85vw, 12.5px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .slide-title {
+      font-size: clamp(26px, 2.2vw, 38px);
+      font-weight: 800;
+      color: var(--azul-primario);
+      line-height: 1.15;
+    }
+
+    .slide-title span {
+      color: var(--azul-vibrante);
+      background: linear-gradient(120deg, #0056DB, #0791F4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* 3D Elevated Cards sin espacios vacíos */
+    .card-elevated {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: clamp(18px, 1.8vw, 26px);
+      box-shadow: var(--sombra-card);
+      border: 1px solid rgba(7, 145, 244, 0.16);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card-elevated:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px -8px rgba(0, 86, 219, 0.18);
+      border-color: rgba(7, 145, 244, 0.35);
+    }
+
+    .card-elevated::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--azul-primario), var(--azul-vibrante));
+      opacity: 0.95;
+    }
+
+    /* Listas con viñetas ricas y de alto impacto */
+    .card-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin: 12px 0;
+    }
+
+    .card-feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: clamp(12.5px, 0.92vw, 14px);
+      color: var(--texto-cuerpo);
+      line-height: 1.4;
+    }
+
+    .card-feature-list li i {
+      color: var(--azul-vibrante);
+      font-size: 13.5px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .tag-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .card-tag {
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 7px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .card-tag.highlight {
+      background: rgba(7, 145, 244, 0.12);
+      color: #0056db;
+      border-color: rgba(7, 145, 244, 0.25);
+    }
+
+    /* Barra de Controles Flotante Dockeada */
+    .controls-bar {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 1350px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #cbd5e1;
+      font-size: 12.5px;
+      padding: 7px 22px;
+      background: rgba(11, 19, 41, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 100px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 7px 18px;
+      border-radius: 100px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav:hover {
+      background: var(--azul-primario);
+      border-color: var(--azul-vibrante);
+      box-shadow: 0 4px 14px var(--azul-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-fullscreen {
+      background: transparent;
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 7px 14px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-fullscreen:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .slide-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 24px;
+      border-radius: 10px;
+      background: var(--azul-vibrante);
+      box-shadow: 0 0 10px var(--azul-vibrante);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTENEDOR MAESTRO DE DIAPOSITIVAS -->
+  <div class="deck-viewport" id="presentationContainer">
+
+    <!-- SLIDE 1: PORTADA EJECUTIVA Y OBJETIVO CENTRAL -->
+    <div class="slide active" id="slide1" style="background: var(--gradiente-dark); padding: clamp(24px, 3.2vh, 44px) clamp(36px, 4.5vw, 76px) clamp(82px, 10.5vh, 105px) clamp(36px, 4.5vw, 76px); justify-content: space-between; color: white;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); padding: 7px 18px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.25);">
+          <span style="color: #38bdf8; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
+            <i class="fa-solid fa-bullhorn"></i> Plan Maestro de Marketing Estratégico
+          </span>
+        </div>
+        <span style="color: #94a3b8; font-size: 14px; font-weight: 600;">Horizonte Comercial 2026 — 2028</span>
+      </div>
+
+      <div style="max-width: 1150px; margin: clamp(10px, 2vh, 24px) 0;">
+        <h1 style="font-size: clamp(30px, 3.2vw, 52px); font-weight: 800; color: #ffffff; line-height: 1.1; margin-bottom: 14px;">
+          Objetivo del Proyecto &amp; Estrategia de <span style="color: #38bdf8; text-shadow: 0 0 30px rgba(56,189,248,0.45);">Marketing Integral</span>
+        </h1>
+        <p style="font-size: clamp(15px, 1.25vw, 20px); color: #cbd5e1; line-height: 1.45; font-weight: 400; max-width: 980px;">
+          Transformar a Supricom en el socio de climatización más confiable y completo de Venezuela a través de un ecosistema de Trade Marketing, posicionamiento de marca y generación acelerada de Sell-Out.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; border-top: 1px solid rgba(255,255,255,0.18); padding-top: 18px; margin-bottom: 6px;">
+        <div style="background: rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
+          <p style="color: #94a3b8; font-size: 11.5px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Objetivo Primario</p>
+          <p style="color: #ffffff; font-size: clamp(14px, 1.1vw, 17px); font-weight: 700;">De "Vender Cajas" a Socio HVAC</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
+          <p style="color: #94a3b8; font-size: 11.5px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Núcleo del Marketing</p>
+          <p style="color: #ffffff; font-size: clamp(14px, 1.1vw, 17px); font-weight: 700;">3 Niveles: B2B, B2C y Corporativo</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
+          <p style="color: #94a3b8; font-size: 11.5px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Foco en Canales</p>
+          <p style="color: #ffffff; font-size: clamp(14px, 1.1vw, 17px); font-weight: 700;">Ganar el Piso de Venta (Sell-Out)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: OBJETIVO DEL PROYECTO (LOS 3 HORIZONTES) -->
+    <div class="slide" id="slide2">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-bullseye"></i> Horizonte Estratégico</div>
+            <h2 class="slide-title">Objetivo del Proyecto: <span>Evolución en 3 Horizontes</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            Ruta de Escalamiento 2026 — 2028
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated" style="border-left: 5px solid #0056db;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0056db; background: #eff6ff; padding: 4px 9px; border-radius: 6px;">HORIZONTE 01</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;"><i class="fa-regular fa-calendar"></i> Mes 1 — Mes 6</span>
+              </div>
+              <h3 style="font-size: 20px; color: var(--texto-oscuro); margin-bottom: 8px;">Entrada &amp; Wallet Share</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Colocación inmediata sobre la cartera actual de clientes que ya compran tecnología y electrodomésticos pero adquieren climatización a terceros.
+              </p>
+              
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Auditoría de Clientes:</strong> Mapeo de marcas, capacidades y márgenes de compra actuales.</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Campaña Cross-Selling:</strong> <em>"Ahora también climatización con el respaldo de Supricom"</em>.</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Validación Rápida:</strong> Comprobar rotación y asegurar la tasa de segunda y tercera recompra.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Cross-Selling</span>
+                <span class="card-tag">Wallet Share</span>
+                <span class="card-tag">3 SKUs Ganadores</span>
+              </div>
+              <div style="background: #eff6ff; padding: 9px 12px; border-radius: 9px; border-left: 3px solid #0056db; font-size: 12px; font-weight: 700; color: #1e40af;">
+                <i class="fa-solid fa-flag-checkered"></i> Meta: 100% colocación y comprobación de sell-out.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-left: 5px solid #0791f4;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0791f4; background: #eff6ff; padding: 4px 9px; border-radius: 6px;">HORIZONTE 02</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;"><i class="fa-regular fa-calendar"></i> Mes 7 — Mes 18</span>
+              </div>
+              <h3 style="font-size: 20px; color: var(--texto-oscuro); margin-bottom: 8px;">Especialización HVAC</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Construcción de autoridad en el canal para dejar de ser percibidos como un mayorista generalista y consolidar el estatus de especialista técnico.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-circle-check" style="color: #0791f4;"></i><span><strong>Red de Instaladores:</strong> Homologación nacional de técnicos con certificaciones y beneficios.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="color: #0791f4;"></i><span><strong>Trade Marketing Activo:</strong> Despliegue de exhibidores, Brand Corners y programas de incentivos.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="color: #0791f4;"></i><span><strong>Portal Digital de Garantías:</strong> Trazabilidad total de RMA y stock de partes desde el día 1.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Red Certificada</span>
+                <span class="card-tag">Brand Corners</span>
+                <span class="card-tag">Garantía Serial</span>
+              </div>
+              <div style="background: #eff6ff; padding: 9px 12px; border-radius: 9px; border-left: 3px solid #0791f4; font-size: 12px; font-weight: 700; color: #0369a1;">
+                <i class="fa-solid fa-award"></i> Meta: Reconocimiento como distribuidor especializado.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-left: 5px solid #0f172a;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0f172a; background: #f1f5f9; padding: 4px 9px; border-radius: 6px;">HORIZONTE 03</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;"><i class="fa-regular fa-calendar"></i> Mes 19 en adelante</span>
+              </div>
+              <h3 style="font-size: 20px; color: var(--texto-oscuro); margin-bottom: 8px;">Escala &amp; Soluciones</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Trascender de vender unidades residenciales a vender ingeniería integral: climatización comercial, industrial y eventual desarrollo de marca propia.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-circle-check" style="color: #0f172a;"></i><span><strong>Líneas Comerciales:</strong> Cassette, Piso-Techo, VRF/VRV y sistemas de control centralizado.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="color: #0f172a;"></i><span><strong>Supricom Cooling Projects:</strong> Proyectos llave en mano para clínicas, hoteles y constructoras.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="color: #0f172a;"></i><span><strong>Marca Propia con Identidad:</strong> Alta rentabilidad respaldada con manuales, repuestos y servicio.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">VRF/VRV</span>
+                <span class="card-tag">Proyectos B2B</span>
+                <span class="card-tag">Marca Propia</span>
+              </div>
+              <div style="background: #f8fafc; padding: 9px 12px; border-radius: 9px; border-left: 3px solid #0f172a; font-size: 12px; font-weight: 700; color: #334155;">
+                <i class="fa-solid fa-chart-line"></i> Meta: Liderazgo integral y participación en toda la cadena.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: ESTRATEGIA DE MARKETING EN TRES NIVELES -->
+    <div class="slide" id="slide3">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-layer-group"></i> Arquitectura de Comunicación</div>
+            <h2 class="slide-title">Marketing Estratégico: <span>Comunicación en 3 Niveles</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            Enfoque Integral Multicanal
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-building" style="color: #0056db; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Nivel 01</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Marketing Corporativo</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Presentar formalmente a Supricom como un actor de peso y seriedad técnica en la climatización del país.
+              </p>
+              
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Mensaje Matriz:</strong> <em>"Supricom ahora también es climatización con respaldo total"</em>.</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Autoridad en Medios:</strong> Posicionamiento en eventos del sector, relaciones públicas y gremios comerciales.</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Confianza Institucional:</strong> Validar ante fabricantes internacionales la capacidad de distribución local.</span></li>
+              </ul>
+            </div>
+            
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Relaciones Públicas</span>
+                <span class="card-tag">Branding</span>
+                <span class="card-tag">Alianzas Marca</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1e40af;">
+                <i class="fa-solid fa-shield-halved"></i> Respaldo institucional de 22+ años.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-handshake" style="color: #0791f4; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Nivel 02</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Marketing B2B (Distribuidor)</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Comunicación directa hacia dueños de tiendas, revendedores, mayoristas regionales y proyectistas.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-circle-check" style="color: #0791f4;"></i><span><strong>Argumentos de Rentabilidad:</strong> Margen protegido, disponibilidad de stock y crédito corporativo.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="color: #0791f4;"></i><span><strong>Kits de Venta:</strong> Facilidades de despacho en 24h, garantías RMA y capacitaciones exclusivas.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="color: #0791f4;"></i><span><strong>Catálogos Interactivos:</strong> Especificaciones claras para que el distribuidor cotice al instante.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Rentabilidad B2B</span>
+                <span class="card-tag">Stock Inmediato</span>
+                <span class="card-tag">Crédito Comercial</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #0369a1;">
+                <i class="fa-solid fa-chart-line"></i> Aumentar el ticket promedio del revendedor.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-users" style="color: #0f172a; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Nivel 03</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Marketing B2C (Generación Sell-Out)</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Aunque Supricom sea mayorista, educa al usuario final para que demande activamente los equipos en tienda.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-circle-check" style="color: #0f172a;"></i><span><strong>Educación Práctica:</strong> Guías sobre cómo escoger BTU, ventajas de la tecnología Inverter y ahorro eléctrico.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="color: #0f172a;"></i><span><strong>Prevención de Errores:</strong> Contenido sobre voltajes (110V vs 220V) y riesgos de instalaciones deficientes.</span></li>
+                <li><i class="fa-solid fa-circle-check" style="color: #0f172a;"></i><span><strong>Tracción a Tienda:</strong> Derivación de clientes interesados a los puntos de venta oficiales de nuestra red.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Ahorro Inverter</span>
+                <span class="card-tag">Elección de BTU</span>
+                <span class="card-tag">Tracción en Calle</span>
+              </div>
+              <div style="background: #f8fafc; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #334155;">
+                <i class="fa-solid fa-repeat"></i> Generar la demanda para acelerar la recompra.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: TRADE MARKETING & MODELO DE PISO DE VENTA -->
+    <div class="slide" id="slide4">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-store"></i> Trade Marketing en Tienda</div>
+            <h2 class="slide-title">Estrategia de Trade: <span>Ganar el Piso de Venta</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            Regla de Oro: Responder Dudas en &lt;10 Segundos
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated" style="border-top: 5px solid #0056db;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0056db; background: #eff6ff; padding: 3px 9px; border-radius: 20px;">FORMATO BÁSICO</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Tiendas Capilares</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Exhibición Ágil &amp; Mostrador</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Diseñado para cientos de pequeños puntos de venta donde el espacio físico en anaquel es sumamente limitado.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-tag" style="color: #0056db;"></i><span><strong>Stickers de Eficiencia:</strong> Señalización frontal en caja con indicación visible de BTU y voltaje.</span></li>
+                <li><i class="fa-solid fa-table-list" style="color: #0056db;"></i><span><strong>Fichas Comparativas:</strong> Infografía de mostrador con dimensiones sugeridas de habitación.</span></li>
+                <li><i class="fa-solid fa-qrcode" style="color: #0056db;"></i><span><strong>Código QR Rápido:</strong> Descarga inmediata de manuales y garantías al celular del cliente.</span></li>
+                <li><i class="fa-solid fa-money-bill-wave" style="color: #0056db;"></i><span><strong>Habladores de Precio:</strong> Indicador de ahorro energético y condiciones de compra.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Stickers POP</span>
+                <span class="card-tag">Guía Rápida</span>
+                <span class="card-tag">QR Ficha</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #1e40af; font-weight: 700;">
+                <i class="fa-solid fa-check"></i> Máxima conversión con mínima ocupación de piso.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-top: 5px solid #0791f4;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0791f4; background: #eff6ff; padding: 3px 9px; border-radius: 20px;">FORMATO MEDIO</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Distribuidores Clave</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Unidad Real &amp; Backing</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Estructura de impacto medio para distribuidores medianos con área de exhibición de electrodomésticos.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-tv" style="color: #0791f4;"></i><span><strong>Unidad Real Exhibida:</strong> Consola desmontada con acabados reales para tocar y evaluar calidad.</span></li>
+                <li><i class="fa-solid fa-panorama" style="color: #0791f4;"></i><span><strong>Backing Brand Supricom:</strong> Panel de pared con diseño visual de alto impacto lumínico.</span></li>
+                <li><i class="fa-solid fa-leaf" style="color: #0791f4;"></i><span><strong>Señalética de Refrigerante:</strong> Explicación de gas ecológico (R410A / R32) y durabilidad.</span></li>
+                <li><i class="fa-solid fa-gift" style="color: #0791f4;"></i><span><strong>Kits de Merchandising:</strong> Gorras, bolígrafos y libretas para el equipo de mostrador.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Backing Visual</span>
+                <span class="card-tag">Muestra Real</span>
+                <span class="card-tag">Gas R32/R410</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #0369a1; font-weight: 700;">
+                <i class="fa-solid fa-eye"></i> Detención del comprador en el pasillo principal.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-top: 5px solid #0f172a;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0f172a; background: #f1f5f9; padding: 3px 9px; border-radius: 20px;">FORMATO PREMIUM</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Grandes Cuentas / Retail</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Brand Corners Integrados</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Espacios exclusivos dentro de tiendas ancla con tecnología interactiva y asesoría de alto estándar.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-wind" style="color: #0f172a;"></i><span><strong>Unidad Instalada &amp; Operativa:</strong> Equipo funcionando en vivo para comprobar bajo nivel sonoro.</span></li>
+                <li><i class="fa-solid fa-tablet-screen-button" style="color: #0f172a;"></i><span><strong>Pantalla Interactiva:</strong> Comparador digital de ahorro energético vs modelos tradicionales.</span></li>
+                <li><i class="fa-solid fa-shield-virus" style="color: #0f172a;"></i><span><strong>Información de Garantía:</strong> Cartelera destacando el respaldo directo en compresor.</span></li>
+                <li><i class="fa-solid fa-user-check" style="color: #0f172a;"></i><span><strong>Impulsador Certificado:</strong> Personal con capacitación técnica <em>Cooling Champions</em>.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Brand Corner</span>
+                <span class="card-tag">Unidad en Vivo</span>
+                <span class="card-tag">Comparador Digital</span>
+              </div>
+              <div style="background: #f1f5f9; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #334155; font-weight: 700;">
+                <i class="fa-solid fa-trophy"></i> Máxima tasa de cierre y fidelidad al producto.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: CONTROL DE EJECUCIÓN (RETAIL EXECUTION SCORE) -->
+    <div class="slide" id="slide5">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-clipboard-check"></i> Auditoría de Piso de Venta</div>
+            <h2 class="slide-title">Retail Execution Score: <span>Auditoría en Punto de Venta</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            Métrica de Calidad: Escala 0 a 100
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated" style="border-left: 5px solid #0056db;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0056db; background: #eff6ff; padding: 3px 9px; border-radius: 6px;">PILARES DE AUDITORÍA</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Control Presencial</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Variables de Inspección</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Supervisión metódica ejecutada por el equipo de Trade Marketing para certificar el estándar de presencia.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-boxes-stacked" style="color: #0056db;"></i><span><strong>Facing &amp; Posición:</strong> Número de equipos expuestos y ubicación en zonas de alto tráfico.</span></li>
+                <li><i class="fa-solid fa-sparkles" style="color: #0056db;"></i><span><strong>Limpieza &amp; Estado POP:</strong> Conservación impecable de exhibidores, sin roturas ni deterioro.</span></li>
+                <li><i class="fa-solid fa-tags" style="color: #0056db;"></i><span><strong>Precios Correctos:</strong> Cumplimiento de PVP recomendado para evitar guerras de precios.</span></li>
+                <li><i class="fa-solid fa-warehouse" style="color: #0056db;"></i><span><strong>Inventario de Bodega:</strong> Alerta inmediata ante quiebres de los 3 SKUs ganadores.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Facing Óptimo</span>
+                <span class="card-tag">Cero Quiebres</span>
+                <span class="card-tag">PVP Respetado</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #1e40af; font-weight: 700;">
+                <i class="fa-solid fa-camera"></i> Registro con evidencia fotográfica georreferenciada.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-left: 5px solid #0791f4;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0791f4; background: #eff6ff; padding: 3px 9px; border-radius: 6px;">BENCHMARK EN VIVO</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Monitoreo Continuo</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Inteligencia de Competencia</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Detección temprana de movimientos comerciales de otros importadores directamente en el mostrador.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-magnifying-glass-chart" style="color: #0791f4;"></i><span><strong>Precios Competidores:</strong> Levantamiento semanal de cotizaciones de marcas alternativas.</span></li>
+                <li><i class="fa-solid fa-gift" style="color: #0791f4;"></i><span><strong>Promociones Activas:</strong> Identificación de combos, regalos o descuentos de terceros.</span></li>
+                <li><i class="fa-solid fa-comments" style="color: #0791f4;"></i><span><strong>Voz del Vendedor:</strong> Registro de las marcas que el vendedor de piso sugiere primero y por qué.</span></li>
+                <li><i class="fa-solid fa-triangle-exclamation" style="color: #0791f4;"></i><span><strong>Alertas Inmediatas:</strong> Acción rápida de pricing cuando un competidor reduce tarifas.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Benchmark Real</span>
+                <span class="card-tag">Voz del Canal</span>
+                <span class="card-tag">Alertas de Precios</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #0369a1; font-weight: 700;">
+                <i class="fa-solid fa-chart-pie"></i> Información que alimenta el comité mensual de S&amp;OP.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-left: 5px solid #0f172a;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0f172a; background: #f1f5f9; padding: 3px 9px; border-radius: 6px;">DASHBOARD BI</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Dirección Ejecutiva</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Visualización y Ranking</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Panel de control en tiempo real para premiar a los mejores puntos y corregir anomalías operativas.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-gauge-high" style="color: #0f172a;"></i><span><strong>Score 0 a 100:</strong> Calificación objetiva calculada por algoritmos de cumplimiento.</span></li>
+                <li><i class="fa-solid fa-medal" style="color: #0f172a;"></i><span><strong>Top Tiendas Ejecutoras:</strong> Asignación preferente de fondos MDF y rebates trimestrales.</span></li>
+                <li><i class="fa-solid fa-route" style="color: #0f172a;"></i><span><strong>Rutas de Supervisión:</strong> Cronograma automatizado de visitas según volumen del cliente.</span></li>
+                <li><i class="fa-solid fa-arrow-trend-up" style="color: #0f172a;"></i><span><strong>Correlación Score vs Sell-Out:</strong> Demostrar que tiendas con alto score venden 3x más.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Score 0-100</span>
+                <span class="card-tag">Ranking Clientes</span>
+                <span class="card-tag">Decisiones Data</span>
+              </div>
+              <div style="background: #f8fafc; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #334155; font-weight: 700;">
+                <i class="fa-solid fa-circle-check"></i> Cero intuición; gestión por datos objetivos.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: PROGRAMA DE VENDEDORES (COOLING CHAMPIONS) -->
+    <div class="slide" id="slide6">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-trophy"></i> Fidelización del Mostrador</div>
+            <h2 class="slide-title">Cooling Champions: <span>Incentivo a la Fuerza en Tienda</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            Ganar al que Recomienda el Producto
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-coins" style="color: #0056db; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Incentivos</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Puntos por Sell-Out</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Mecanismo transparente donde cada equipo facturado y registrado suma créditos para el vendedor.
+              </p>
+              
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-barcode"></i><span><strong>Registro por Serial:</strong> El vendedor escanea la etiqueta desde el celular al cerrar la venta.</span></li>
+                <li><i class="fa-solid fa-gift"></i><span><strong>Premios Atractivos:</strong> Canje directo por gift cards digitales, electrodomésticos o efectivo.</span></li>
+                <li><i class="fa-solid fa-ranking-star"></i><span><strong>Tablas de Clasificación:</strong> Rankings mensuales por sucursal con bonos extraordinarios.</span></li>
+              </ul>
+            </div>
+            
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Puntos x Serial</span>
+                <span class="card-tag">Gift Cards</span>
+                <span class="card-tag">Rankings</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1e40af;">
+                <i class="fa-solid fa-star"></i> El vendedor prioriza activamente nuestra marca.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-graduation-cap" style="color: #0791f4; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Capacitación</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Certificación de Venta</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                No se trata solo de pagar por vender; formamos asesores consultivos que dominan las respuestas técnicas.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-chalkboard-user" style="color: #0791f4;"></i><span><strong>Argumentarios de Venta:</strong> Cómo derribar objeciones sobre consumo eléctrico y voltajes.</span></li>
+                <li><i class="fa-solid fa-shield" style="color: #0791f4;"></i><span><strong>Defensa de Garantía:</strong> Explicar al comprador por qué nuestro respaldo postventa es superior.</span></li>
+                <li><i class="fa-solid fa-id-badge" style="color: #0791f4;"></i><span><strong>Badge Certificado:</strong> Carnet oficial como asesor técnico avalado por Supricom.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Argumentario</span>
+                <span class="card-tag">Manejo Objeciones</span>
+                <span class="card-tag">Certificación</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #0369a1;">
+                <i class="fa-solid fa-lightbulb"></i> Convierte una duda técnica en un cierre inmediato.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-champagne-glasses" style="color: #0f172a; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Comunidad</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Eventos &amp; Experiencias</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Espacios de integración que construyen lazos de lealtad duraderos entre el asesor de tienda y Supricom.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-snowflake" style="color: #0f172a;"></i><span><strong>Cooling Days:</strong> Jornadas especiales en vivo con animaciones y premios instantáneos.</span></li>
+                <li><i class="fa-solid fa-trophy" style="color: #0f172a;"></i><span><strong>Convención Anual:</strong> Premiación de los asesores con mayor volumen de sell-out nacional.</span></li>
+                <li><i class="fa-solid fa-mobile" style="color: #0f172a;"></i><span><strong>Comunidad WhatsApp:</strong> Canal exclusivo con tips de venta, noticias y material rápido.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Cooling Days</span>
+                <span class="card-tag">Convención Anual</span>
+                <span class="card-tag">Canal VIP</span>
+              </div>
+              <div style="background: #f8fafc; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #334155;">
+                <i class="fa-solid fa-handshake-angle"></i> Compromiso emocional y fidelidad con la marca.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: ESTRATEGIA DIGITAL Y CALCULADOR DE BTU -->
+    <div class="slide" id="slide7">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-globe"></i> Ecosistema Digital</div>
+            <h2 class="slide-title">Estrategia Digital: <span>Plataforma &amp; Herramientas</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            De Simple Catálogo a Herramienta de Ingeniería
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-computer" style="color: #0056db; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Portal B2B</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Portal Transaccional 24/7</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Una sección de Climatización totalmente independiente dentro de la plataforma web corporativa de Supricom.
+              </p>
+              
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-sliders"></i><span><strong>Filtros Avanzados:</strong> Búsqueda inmediata por BTU, voltaje, gas ecológico, inverter y tecnología.</span></li>
+                <li><i class="fa-solid fa-box-open"></i><span><strong>Stock en Tiempo Real:</strong> Visibilidad de inventario disponible en almacenes Valencia y Caracas.</span></li>
+                <li><i class="fa-solid fa-file-pdf"></i><span><strong>Descargas Directas:</strong> Fichas técnicas de alta resolución y manuales para cotizar proyectos.</span></li>
+              </ul>
+            </div>
+            
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Stock Visible</span>
+                <span class="card-tag">Filtros HVAC</span>
+                <span class="card-tag">Cotizador 24/7</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #1e40af;">
+                <i class="fa-solid fa-cart-shopping"></i> Autoservicio comercial sin fricciones de horario.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-calculator" style="color: #0791f4; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Herramienta</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Calculador de BTU Digital</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Aplicación inteligente abierta a clientes e instaladores para dimensionamiento térmico preciso.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-ruler-combined" style="color: #0791f4;"></i><span><strong>Parámetros Multivariable:</strong> Metros cuadrados, altura de techo, ventanas e incidencia solar.</span></li>
+                <li><i class="fa-solid fa-users-viewfinder" style="color: #0791f4;"></i><span><strong>Carga Térmica:</strong> Ocupación humana promedio y equipos electrónicos encendidos.</span></li>
+                <li><i class="fa-solid fa-bullseye" style="color: #0791f4;"></i><span><strong>Recomendación Precisa:</strong> Sugerencia del SKU exacto evitando sobredimensionar o subenfriar.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Cálculo Térmico</span>
+                <span class="card-tag">Ahorro Energía</span>
+                <span class="card-tag">Lead Generator</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #0369a1;">
+                <i class="fa-solid fa-bolt"></i> Transforma visitas casuales en ventas cerradas.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #bfdbfe;">
+                  <i class="fa-solid fa-share-nodes" style="color: #0f172a; font-size: 20px;"></i>
+                </div>
+                <span class="card-tag highlight">Canal Digital</span>
+              </div>
+              <h3 style="font-size: 19px; margin-bottom: 6px; color: #0056db;">Captura y Enlace a Ventas</h3>
+              <p style="font-size: 13.5px; line-height: 1.45; color: var(--texto-cuerpo);">
+                Sincronización instantánea entre la web y el equipo de asesores para proyectos comerciales complejos.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-brands fa-whatsapp" style="color: #0f172a;"></i><span><strong>Botón Asesor Directo:</strong> Conexión inmediata vía WhatsApp con el Product Specialist HVAC.</span></li>
+                <li><i class="fa-solid fa-diagram-project" style="color: #0f172a;"></i><span><strong>Pipeline CRM:</strong> Los prospectos de cálculo grande entran al funnel de Proyectos.</span></li>
+                <li><i class="fa-solid fa-download" style="color: #0f172a;"></i><span><strong>Presupuesto en PDF:</strong> Envío automático de cotización con validez y términos de garantía.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">WhatsApp API</span>
+                <span class="card-tag">Funnel CRM</span>
+                <span class="card-tag">Cotización PDF</span>
+              </div>
+              <div style="background: #f8fafc; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #334155;">
+                <i class="fa-solid fa-arrow-trend-up"></i> Conversión acelerada de visitas en facturas.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: MARKETING KIT PARA DISTRIBUIDORES & MDF -->
+    <div class="slide" id="slide8">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-toolbox"></i> Apoyo al Canal</div>
+            <h2 class="slide-title">Marketing Kit Mensual &amp; <span>Fondos MDF</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            Facilitar la Venta al Revendedor
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated" style="border-top: 5px solid #0056db;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0056db; background: #eff6ff; padding: 3px 9px; border-radius: 20px;">ENTREGABLE MENSUAL</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Listo para Usar</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Marketing Kit Digital</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                No obligamos a cada cliente a diseñar su campaña; entregamos los paquetes publicitarios completos cada mes.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-brands fa-instagram" style="color: #0056db;"></i><span><strong>Contenido para Redes:</strong> Plantillas editables para Stories, Reels, carruseles y banners.</span></li>
+                <li><i class="fa-brands fa-whatsapp" style="color: #0056db;"></i><span><strong>Flyers de WhatsApp:</strong> Artes en alta resolución optimizados para estados y listas de difusión.</span></li>
+                <li><i class="fa-solid fa-cart-shopping" style="color: #0056db;"></i><span><strong>Material Ecommerce:</strong> Fotos limpias con fondo blanco listas para Mercado Libre y tiendas online.</span></li>
+                <li><i class="fa-solid fa-cloud-arrow-down" style="color: #0056db;"></i><span><strong>Descarga con 1 Clic:</strong> Acceso centralizado desde la cuenta B2B del cliente.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Stories &amp; Reels</span>
+                <span class="card-tag">WhatsApp Flyers</span>
+                <span class="card-tag">Mercado Libre</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #1e40af; font-weight: 700;">
+                <i class="fa-solid fa-rocket"></i> El distribuidor publica y vende el mismo día de la entrega.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-top: 5px solid #0791f4;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0791f4; background: #eff6ff; padding: 3px 9px; border-radius: 20px;">CO-MARKETING</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Fondos MDF</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Co-Inversión Estratégica</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Fondos de desarrollo de marketing asignados a cuentas clave para potenciar su visibilidad territorial.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-rectangle-ad" style="color: #0791f4;"></i><span><strong>Publicidad Conjunta:</strong> Cofinanciamiento de vallas exteriores, pautas digitales y cuñas de radio.</span></li>
+                <li><i class="fa-solid fa-store" style="color: #0791f4;"></i><span><strong>Remodelación de Vitrinas:</strong> Adecuación de fachadas y áreas de exhibición en puntos de alto flujo.</span></li>
+                <li><i class="fa-solid fa-hand-holding-dollar" style="color: #0791f4;"></i><span><strong>Regla de Aprobación:</strong> Requiere objetivo claro, presupuesto auditado y sell-out medible.</span></li>
+                <li><i class="fa-solid fa-shield-halved" style="color: #0791f4;"></i><span><strong>Protección de Capital:</strong> Cero fondos entregados sin comprobante formal de ejecución.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Vallas &amp; Pauta</span>
+                <span class="card-tag">Co-Branding</span>
+                <span class="card-tag">Sell-Out Medido</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #0369a1; font-weight: 700;">
+                <i class="fa-solid fa-scale-balanced"></i> Relaciones ganar-ganar de largo plazo con retailers.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-top: 5px solid #0f172a;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0f172a; background: #f1f5f9; padding: 3px 9px; border-radius: 20px;">EXPERIENCIAS EN VIVO</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Activaciones</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Cooling Days &amp; Eventos</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Jornadas de activación comercial en tiendas donde el comprador final experimenta el rendimiento del equipo.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-bullhorn" style="color: #0f172a;"></i><span><strong>Jornadas de Demostración:</strong> Equipos portátiles y stands activos en los días de mayor tráfico comercial.</span></li>
+                <li><i class="fa-solid fa-tags" style="color: #0f172a;"></i><span><strong>Ofertas Relámpago:</strong> Promociones especiales con cupones de instalación gratuita por compra.</span></li>
+                <li><i class="fa-solid fa-users" style="color: #0f172a;"></i><span><strong>Workshops para Técnicos:</strong> Charlas relámpago con instaladores y arquitectos locales.</span></li>
+                <li><i class="fa-solid fa-video" style="color: #0f172a;"></i><span><strong>Contenido para Redes:</strong> Cobertura en vivo que incrementa el tráfico hacia el distribuidor.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Cooling Days</span>
+                <span class="card-tag">Stands Vivos</span>
+                <span class="card-tag">Eventos Retail</span>
+              </div>
+              <div style="background: #f1f5f9; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #334155; font-weight: 700;">
+                <i class="fa-solid fa-fire"></i> Dinamización directa del inventario del distribuidor.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: CONTENIDO EDUCATIVO & ACADEMIA DE CLIMATIZACIÓN -->
+    <div class="slide" id="slide9">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-lightbulb"></i> Autoridad de Marca</div>
+            <h2 class="slide-title">Marketing de Contenidos: <span>Academia Climatización</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            Principio Clave: La Educación Genera Autoridad
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated" style="border-left: 5px solid #0056db;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0056db; background: #eff6ff; padding: 3px 9px; border-radius: 6px;">PILARES DE CONTENIDO</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Cadencia Semanal</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Temas de Alto Interés</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Creación sistemática de contenido que responde a las dudas más comunes del comprador venezolano.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-bolt" style="color: #0056db;"></i><span><strong>Consumo &amp; Eficiencia:</strong> Cómo calcular el ahorro en la factura eléctrica usando tecnología Inverter.</span></li>
+                <li><i class="fa-solid fa-plug" style="color: #0056db;"></i><span><strong>Voltaje Seguro:</strong> Diferencias reales entre 110V y 220V ante variaciones del suministro eléctrico.</span></li>
+                <li><i class="fa-solid fa-triangle-exclamation" style="color: #0056db;"></i><span><strong>Errores que Dañan Compresores:</strong> Mala conexión eléctrica, falta de vacío y fugas de refrigerante.</span></li>
+                <li><i class="fa-solid fa-screwdriver-wrench" style="color: #0056db;"></i><span><strong>Mantenimiento Preventivo:</strong> Frecuencia adecuada de limpieza de filtros y serpentín.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Ahorro Eléctrico</span>
+                <span class="card-tag">Cuidado Compresor</span>
+                <span class="card-tag">Frecuencia Filtros</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #1e40af; font-weight: 700;">
+                <i class="fa-solid fa-book-open"></i> Contenido que educa y elimina miedos de compra.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-left: 5px solid #0791f4;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0791f4; background: #eff6ff; padding: 3px 9px; border-radius: 6px;">FORMATOS MULTIMEDIA</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Video &amp; Guías</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Canales de Difusión</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Adaptación ágil del mensaje a las plataformas de mayor consumo en el canal comercial.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-brands fa-youtube" style="color: #0791f4;"></i><span><strong>Video-Píldoras de 60s:</strong> Clips prácticos para Instagram y YouTube Shorts explicando detalles técnicos.</span></li>
+                <li><i class="fa-solid fa-file-pdf" style="color: #0791f4;"></i><span><strong>E-Books Descargables:</strong> Guía del comprador inteligente disponible en la web de Supricom.</span></li>
+                <li><i class="fa-solid fa-users" style="color: #0791f4;"></i><span><strong>Webinars Mensuales:</strong> Sesiones en vivo con expertos dirigidas a dueños de tiendas y vendedores.</span></li>
+                <li><i class="fa-solid fa-newspaper" style="color: #0791f4;"></i><span><strong>Newsletter B2B:</strong> Artículos sobre tendencias, nuevos refrigerantes y normativas de eficiencia.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Shorts &amp; Reels</span>
+                <span class="card-tag">Webinars Vivos</span>
+                <span class="card-tag">E-Books PDF</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #0369a1; font-weight: 700;">
+                <i class="fa-solid fa-video"></i> Formatos dinámicos de fácil asimilación.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-left: 5px solid #0f172a;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family:'Space Grotesk',sans-serif; font-size: 12px; font-weight: 800; color: #0f172a; background: #f1f5f9; padding: 3px 9px; border-radius: 6px;">AUTORIDAD DE MARCA</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Estatus Técnico</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Impacto en el Negocio</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Cómo el marketing de contenidos protege la rentabilidad del canal frente a la guerra de precios.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-award" style="color: #0f172a;"></i><span><strong>Desmarcarse del Precio:</strong> El cliente paga por conocimiento, garantía y asesoría confiable.</span></li>
+                <li><i class="fa-solid fa-headset" style="color: #0f172a;"></i><span><strong>Reducción de Fallas RMA:</strong> Menos llamados a soporte gracias a un uso e instalación correctos.</span></li>
+                <li><i class="fa-solid fa-handshake" style="color: #0f172a;"></i><span><strong>Preferencia del Instalador:</strong> Los técnicos recomiendan la marca que les enseña y capacita.</span></li>
+                <li><i class="fa-solid fa-magnifying-glass" style="color: #0f172a;"></i><span><strong>Búsqueda Orgánica:</strong> Posicionamiento SEO en Google para búsquedas de climatización en el país.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Menos RMA</span>
+                <span class="card-tag">Preferencia</span>
+                <span class="card-tag">Posicionamiento</span>
+              </div>
+              <div style="background: #f8fafc; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #334155; font-weight: 700;">
+                <i class="fa-solid fa-shield-check"></i> Blindaje comercial frente a competidores baratos.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: MARKETING CON INSTALADORES Y PRESCRIPCIÓN TÉCNICA -->
+    <div class="slide" id="slide10">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-screwdriver-wrench"></i> Fuerza de Prescripción</div>
+            <h2 class="slide-title">Comunidad Técnica: <span>El Instalador como Influencer</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            El Máximo Influenciador de la Decisión Final
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated" style="border-top: 5px solid #0056db;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0056db; background: #eff6ff; padding: 3px 9px; border-radius: 20px;">PODER DE PRESCRIPCIÓN</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Pregunta Clave</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">"¿Qué Aire me Recomienda?"</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                En climatización, el 70% de los consumidores residenciales compran exactamente la marca sugerida por el instalador.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-check" style="color: #0056db;"></i><span><strong>Confianza Ciega del Usuario:</strong> El técnico valida si el equipo es duradero y si existen repuestos.</span></li>
+                <li><i class="fa-solid fa-check" style="color: #0056db;"></i><span><strong>Protección del Trabajo:</strong> El técnico no instala marcas que fallen rápido porque arriesga su reputación.</span></li>
+                <li><i class="fa-solid fa-check" style="color: #0056db;"></i><span><strong>Socio Natural:</strong> Convertir al instalador en un aliado de Supricom y no en un obstáculo.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Prescripción</span>
+                <span class="card-tag">Reputación</span>
+                <span class="card-tag">Socio Clave</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #1e40af; font-weight: 700;">
+                <i class="fa-solid fa-thumbs-up"></i> Quien gana al técnico, gana el mercado.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-top: 5px solid #0791f4;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0791f4; background: #eff6ff; padding: 3px 9px; border-radius: 20px;">RED CERTIFICADA</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Homologación</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Programa de Certificación</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Creación formal de la <em>Red de Instaladores Certificados Supricom</em> en todo el territorio nacional.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-check" style="color: #0791f4;"></i><span><strong>Entrenamiento en Taller:</strong> Protocolos de vacío profundo, soldadura de tuberías y conexiones eléctricas.</span></li>
+                <li><i class="fa-solid fa-check" style="color: #0791f4;"></i><span><strong>Acceso Directo a Repuestos:</strong> Compra prioritaria de repuestos originales desde la primera llamada.</span></li>
+                <li><i class="fa-solid fa-check" style="color: #0791f4;"></i><span><strong>Línea Técnica VIP:</strong> Atención directa por ingenieros HVAC para resolución de dudas en obra.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Vacío Profundo</span>
+                <span class="card-tag">Soporte en Obra</span>
+                <span class="card-tag">Repuestos Día 1</span>
+              </div>
+              <div style="background: #eff6ff; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #0369a1; font-weight: 700;">
+                <i class="fa-solid fa-award"></i> Erradicación de fallas causadas por mala instalación.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-top: 5px solid #0f172a;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0f172a; background: #f1f5f9; padding: 3px 9px; border-radius: 20px;">BENEFICIOS MUTUOS</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Ecosistema</span>
+              </div>
+              <h3 style="font-size: 19px; color: var(--texto-oscuro); margin-bottom: 6px;">Asignación de Trabajos</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45;">
+                Incentivo comercial: conectar a los compradores finales y distribuidores con técnicos certificados.
+              </p>
+
+              <ul class="card-feature-list">
+                <li><i class="fa-solid fa-check" style="color: #0f172a;"></i><span><strong>Directorio de Instaladores:</strong> Los clientes finales acceden a técnicos calificados por zona.</span></li>
+                <li><i class="fa-solid fa-check" style="color: #0f172a;"></i><span><strong>Garantía Blindada:</strong> Al instalar con un técnico certificado, la garantía del equipo se extiende.</span></li>
+                <li><i class="fa-solid fa-check" style="color: #0f172a;"></i><span><strong>Herramientas y Descuentos:</strong> Acceso a bombas de vacío, manómetros y tuberías a precios de aliado.</span></li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="tag-cluster">
+                <span class="card-tag">Directorio Nacional</span>
+                <span class="card-tag">Garantía Extendida</span>
+                <span class="card-tag">Descuentos</span>
+              </div>
+              <div style="background: #f1f5f9; padding: 8px 12px; border-radius: 8px; font-size: 12px; color: #334155; font-weight: 700;">
+                <i class="fa-solid fa-infinity"></i> Ecosistema colaborativo autosustentable.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: MARKETING FLYWHEEL & MÉTRICAS (KPIS) -->
+    <div class="slide" id="slide11">
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-chart-line"></i> Medición y Tracción</div>
+            <h2 class="slide-title">El Flywheel de Marketing &amp; <span>KPIs de Control</span></h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+            Círculo Virtuoso de Sell-In &amp; Sell-Out
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; flex-grow: 1; align-items: stretch;">
+          <div class="card-elevated" style="border-left: 5px solid #0056db;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0056db; background: #eff6ff; padding: 3px 9px; border-radius: 20px;">CÍRCULO VIRTUOSO</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Efecto Compuesto</span>
+              </div>
+              <h3 style="font-size: 20px; color: var(--texto-oscuro); margin-bottom: 8px;">El Flywheel de Climatización Supricom</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.5; margin-bottom: 12px;">
+                El crecimiento no depende de esfuerzos aislados, sino de la sincronía continua de 6 fases encadenadas:
+              </p>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 10px;">
+                  <strong style="color: #0056db; font-size: 13px; display: block; margin-bottom: 2px;">1. Producto &amp; Stock</strong>
+                  <span style="font-size: 12px; color: #64748b;">Disponibilidad continua sin quiebres en SKUs ganadores.</span>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 10px;">
+                  <strong style="color: #0791f4; font-size: 13px; display: block; margin-bottom: 2px;">2. Trade Marketing</strong>
+                  <span style="font-size: 12px; color: #64748b;">Exhibición destacada que responde dudas en &lt;10 seg.</span>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 10px;">
+                  <strong style="color: #0056db; font-size: 13px; display: block; margin-bottom: 2px;">3. Vendedor Motivado</strong>
+                  <span style="font-size: 12px; color: #64748b;">Puntos por venta y conocimiento técnico consultivo.</span>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 10px;">
+                  <strong style="color: #0791f4; font-size: 13px; display: block; margin-bottom: 2px;">4. Instalador Aliado</strong>
+                  <span style="font-size: 12px; color: #64748b;">Prescripción técnica positiva y cero fallas de montaje.</span>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 10px;">
+                  <strong style="color: #0056db; font-size: 13px; display: block; margin-bottom: 2px;">5. Sell-Out Acelerado</strong>
+                  <span style="font-size: 12px; color: #64748b;">Salida real de equipos al consumidor final.</span>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 10px;">
+                  <strong style="color: #0791f4; font-size: 13px; display: block; margin-bottom: 2px;">6. Recompra Masiva</strong>
+                  <span style="font-size: 12px; color: #64748b;">Nuevos pedidos al mayorista y mayor volumen de compra.</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 14px; background: #eff6ff; padding: 9px 14px; border-radius: 10px; font-size: 12.5px; color: #1e40af; font-weight: 700;">
+              <i class="fa-solid fa-arrows-spin"></i> Cada vuelta del flywheel reduce el costo de adquisición y multiplica la rentabilidad.
+            </div>
+          </div>
+
+          <div class="card-elevated" style="border-left: 5px solid #0791f4;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 12px; font-weight: 800; color: #0791f4; background: #eff6ff; padding: 3px 9px; border-radius: 20px;">DASHBOARD EJECUTIVO</span>
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">KPIs Clave</span>
+              </div>
+              <h3 style="font-size: 20px; color: var(--texto-oscuro); margin-bottom: 8px;">Métricas de Éxito de Marketing</h3>
+              <p style="font-size: 13.5px; color: var(--texto-cuerpo); line-height: 1.45; margin-bottom: 12px;">
+                Indicadores auditados de forma semanal y mensual:
+              </p>
+
+              <ul class="card-feature-list" style="margin: 0; gap: 8px;">
+                <li><i class="fa-solid fa-shop" style="color: #0791f4;"></i><span><strong>Puntos Activos con Display:</strong> Meta mes 12: 300 tiendas exhibiendo la marca.</span></li>
+                <li><i class="fa-solid fa-star" style="color: #0791f4;"></i><span><strong>Retail Execution Score:</strong> Promedio nacional sostenido superior a 85/100.</span></li>
+                <li><i class="fa-solid fa-user-group" style="color: #0791f4;"></i><span><strong>Vendedores Activos:</strong> &gt;500 asesores de mostrador inscritos en Champions.</span></li>
+                <li><i class="fa-solid fa-wrench" style="color: #0791f4;"></i><span><strong>Red de Técnicos:</strong> Cobertura en las 10 principales ciudades del país.</span></li>
+                <li><i class="fa-solid fa-calculator" style="color: #0791f4;"></i><span><strong>Cálculos BTU Generados:</strong> &gt;2.000 dimensionamientos al mes en la web.</span></li>
+                <li><i class="fa-solid fa-percent" style="color: #0791f4;"></i><span><strong>ROI de Fondos MDF:</strong> Sell-out generado de al menos 8x por cada dólar co-invertido.</span></li>
+              </ul>
+            </div>
+
+            <div style="margin-top: 14px; background: #f8fafc; padding: 9px 14px; border-radius: 10px; font-size: 12px; color: #334155; font-weight: 700;">
+              <i class="fa-solid fa-chart-column"></i> Control riguroso de cada dólar destinado a mercadeo.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: CIERRE Y VISIÓN ESTRATÉGICA -->
+    <div class="slide" id="slide12" style="background: var(--gradiente-dark); padding: clamp(40px, 5vh, 68px); justify-content: center; align-items: center; text-align: center; color: white;">
+      <div style="background: rgba(255,255,255,0.12); padding: 7px 20px; border-radius: 30px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.2);">
+        <span style="color: #38bdf8; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
+          Conclusión del Plan Maestro
+        </span>
+      </div>
+
+      <h2 style="font-size: clamp(32px, 3.2vw, 48px); font-weight: 800; color: #ffffff; line-height: 1.15; max-width: 1000px; margin-bottom: 18px;">
+        Un Ecosistema de Marketing que Construye <span style="color: #38bdf8;">Liderazgo y Recompra</span>
+      </h2>
+
+      <p style="font-size: clamp(16px, 1.4vw, 21px); color: #cbd5e1; max-width: 860px; line-height: 1.5; margin-bottom: 32px;">
+        El éxito no radica en importar cajas, sino en estructurar una maquinaria de Trade Marketing, educación técnica, herramientas digitales y respaldo que garantice la rotación continua en cada distribuidor.
+      </p>
+
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; max-width: 900px;">
+        <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 12px 22px; border-radius: 12px;">
+          <span style="color: #38bdf8; font-weight: 700; font-size: 15px;"><i class="fa-solid fa-store" style="margin-right: 6px;"></i> Dominio de Piso de Venta</span>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 12px 22px; border-radius: 12px;">
+          <span style="color: #ffffff; font-weight: 700; font-size: 15px;"><i class="fa-solid fa-trophy" style="margin-right: 6px;"></i> Cooling Champions</span>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 12px 22px; border-radius: 12px;">
+          <span style="color: #38bdf8; font-weight: 700; font-size: 15px;"><i class="fa-solid fa-screwdriver-wrench" style="margin-right: 6px;"></i> Red de Instaladores</span>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 12px 22px; border-radius: 12px;">
+          <span style="color: #ffffff; font-weight: 700; font-size: 15px;"><i class="fa-solid fa-repeat" style="margin-right: 6px;"></i> Sell-Out y Recompra</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BARRA DE CONTROLES INFERIOR -->
+  <div class="controls-bar">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span id="slideIndicator" style="font-weight: 700; color: #ffffff;">Diapositiva 1 de 12</span>
+      <span style="color: #64748b; font-size: 12px;">• Usa ← / →</span>
+      <button class="btn-fullscreen" id="fullscreenBtn" title="Alternar Pantalla Completa">
+        <i class="fa-solid fa-expand"></i> Pantalla Completa
+      </button>
+    </div>
+
+    <div class="slide-dots" id="dotsContainer"></div>
+
+    <div class="nav-buttons">
+      <button class="btn-nav" id="prevBtn"><i class="fa-solid fa-chevron-left"></i> Anterior</button>
+      <button class="btn-nav" id="nextBtn" style="background: var(--azul-primario);">Siguiente <i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 12;
+
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideIndicator = document.getElementById('slideIndicator');
+    const dotsContainer = document.getElementById('dotsContainer');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    // Generar dots interactivos
+    for (let i = 1; i <= totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.className = `dot ${i === 1 ? 'active' : ''}`;
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updatePresentation() {
+      slides.forEach((slide, index) => {
+        if (index + 1 === currentSlide) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      dots.forEach((dot, index) => {
+        if (index + 1 === currentSlide) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+
+      slideIndicator.textContent = `Diapositiva ${currentSlide} de ${totalSlides}`;
+      
+      prevBtn.disabled = currentSlide === 1;
+      prevBtn.style.opacity = currentSlide === 1 ? '0.45' : '1';
+      prevBtn.style.cursor = currentSlide === 1 ? 'not-allowed' : 'pointer';
+
+      if (currentSlide === totalSlides) {
+        nextBtn.innerHTML = 'Reiniciar <i class="fa-solid fa-rotate-right"></i>';
+      } else {
+        nextBtn.innerHTML = 'Siguiente <i class="fa-solid fa-chevron-right"></i>';
+      }
+    }
+
+    function goToSlide(n) {
+      currentSlide = n;
+      updatePresentation();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+      } else {
+        currentSlide = 1;
+      }
+      updatePresentation();
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updatePresentation();
+      }
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // Modo pantalla completa
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-compress"></i> Salir de Pantalla Completa';
+      } else {
+        document.exitFullscreen().catch(() => {});
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i> Pantalla Completa';
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i> Pantalla Completa';
+      }
+    });
+
+    // Controles por teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        fullscreenBtn.click();
+      }
+    });
+
+    updatePresentation();
+  </script>
+</body>
+</html>
