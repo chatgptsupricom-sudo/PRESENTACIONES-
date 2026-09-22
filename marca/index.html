@@ -66,12 +66,27 @@
       visibility: hidden;
       transform: scale(0.99) translateX(25px);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      padding: clamp(20px, 2.8vh, 36px) clamp(32px, 4vw, 76px) clamp(80px, 10vh, 100px) clamp(32px, 4vw, 76px);
+      padding: clamp(18px, 2.5vh, 32px) clamp(20px, 3.8vw, 76px) clamp(75px, 9vh, 95px) clamp(20px, 3.8vw, 76px);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       background: var(--slide-bg);
       z-index: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Scrollbar estilizada para móviles y pantallas reducidas */
+    .slide::-webkit-scrollbar {
+      width: 5px;
+    }
+    .slide::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .slide::-webkit-scrollbar-thumb {
+      background: rgba(7, 145, 244, 0.35);
+      border-radius: 10px;
     }
 
     .slide.active {
@@ -128,6 +143,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .pill-kicker {
@@ -240,6 +257,88 @@
       border-color: rgba(7, 145, 244, 0.25);
     }
 
+    /* SISTEMA DE GRIDS RESPONSIVAS */
+    .responsive-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(12px, 1.4vw, 20px);
+      flex-grow: 1;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .responsive-grid-split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(14px, 1.6vw, 24px);
+      flex-grow: 1;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .responsive-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(10px, 1.2vw, 18px);
+      border-top: 1px solid rgba(255,255,255,0.18);
+      padding-top: 16px;
+      margin-bottom: 6px;
+      width: 100%;
+    }
+
+    /* ADAPTACIONES RESPONSIVAS PARA TABLETS Y MÓVILES */
+    @media (max-width: 1024px) {
+      .responsive-grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .responsive-grid-split {
+        grid-template-columns: 1fr;
+      }
+      .controls-bar {
+        padding: 6px 14px;
+        width: calc(100% - 24px);
+      }
+      .hint-keyboard {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slide {
+        padding: 16px 16px 86px 16px;
+      }
+      .responsive-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .responsive-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .card-elevated {
+        padding: 16px;
+      }
+      .controls-bar {
+        width: calc(100% - 16px);
+        bottom: 8px;
+        padding: 6px 12px;
+      }
+      .slide-dots {
+        display: none;
+      }
+      #fullscreenBtn {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+      .btn-nav {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      .slide-title {
+        font-size: clamp(21px, 5.5vw, 28px);
+      }
+    }
+
     /* Barra de Controles Flotante Dockeada */
     .controls-bar {
       position: fixed;
@@ -254,7 +353,7 @@
       color: #cbd5e1;
       font-size: 12.5px;
       padding: 7px 22px;
-      background: rgba(11, 19, 41, 0.92);
+      background: rgba(11, 19, 41, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -360,16 +459,16 @@
         </p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; border-top: 1px solid rgba(255,255,255,0.18); padding-top: 18px; margin-bottom: 6px;">
-        <div style="background: rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
+      <div class="responsive-stats-grid">
+        <div style="background: rgba(255,255,255,0.08); padding: 14px 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
           <p style="color: #94a3b8; font-size: 11.5px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Objetivo Primario</p>
           <p style="color: #ffffff; font-size: clamp(14px, 1.1vw, 17px); font-weight: 700;">De "Vender Cajas" a Socio HVAC</p>
         </div>
-        <div style="background: rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
+        <div style="background: rgba(255,255,255,0.08); padding: 14px 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
           <p style="color: #94a3b8; font-size: 11.5px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Núcleo del Marketing</p>
           <p style="color: #ffffff; font-size: clamp(14px, 1.1vw, 17px); font-weight: 700;">3 Niveles: B2B, B2C y Corporativo</p>
         </div>
-        <div style="background: rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
+        <div style="background: rgba(255,255,255,0.08); padding: 14px 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12);">
           <p style="color: #94a3b8; font-size: 11.5px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Foco en Canales</p>
           <p style="color: #ffffff; font-size: clamp(14px, 1.1vw, 17px); font-weight: 700;">Ganar el Piso de Venta (Sell-Out)</p>
         </div>
@@ -384,12 +483,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-bullseye"></i> Horizonte Estratégico</div>
             <h2 class="slide-title">Objetivo del Proyecto: <span>Evolución en 3 Horizontes</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             Ruta de Escalamiento 2026 — 2028
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated" style="border-left: 5px solid #0056db;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -491,12 +590,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-layer-group"></i> Arquitectura de Comunicación</div>
             <h2 class="slide-title">Marketing Estratégico: <span>Comunicación en 3 Niveles</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             Enfoque Integral Multicanal
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
@@ -604,12 +703,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-store"></i> Trade Marketing en Tienda</div>
             <h2 class="slide-title">Estrategia de Trade: <span>Ganar el Piso de Venta</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             Regla de Oro: Responder Dudas en &lt;10 Segundos
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated" style="border-top: 5px solid #0056db;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -714,12 +813,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-clipboard-check"></i> Auditoría de Piso de Venta</div>
             <h2 class="slide-title">Retail Execution Score: <span>Auditoría en Punto de Venta</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             Métrica de Calidad: Escala 0 a 100
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated" style="border-left: 5px solid #0056db;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -824,12 +923,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-trophy"></i> Fidelización del Mostrador</div>
             <h2 class="slide-title">Cooling Champions: <span>Incentivo a la Fuerza en Tienda</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             Ganar al que Recomienda el Producto
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
@@ -937,12 +1036,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-globe"></i> Ecosistema Digital</div>
             <h2 class="slide-title">Estrategia Digital: <span>Plataforma &amp; Herramientas</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             De Simple Catálogo a Herramienta de Ingeniería
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
@@ -1050,12 +1149,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-toolbox"></i> Apoyo al Canal</div>
             <h2 class="slide-title">Marketing Kit Mensual &amp; <span>Fondos MDF</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             Facilitar la Venta al Revendedor
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated" style="border-top: 5px solid #0056db;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -1160,12 +1259,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-lightbulb"></i> Autoridad de Marca</div>
             <h2 class="slide-title">Marketing de Contenidos: <span>Academia Climatización</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             Principio Clave: La Educación Genera Autoridad
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated" style="border-left: 5px solid #0056db;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -1270,12 +1369,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-screwdriver-wrench"></i> Fuerza de Prescripción</div>
             <h2 class="slide-title">Comunidad Técnica: <span>El Instalador como Influencer</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             El Máximo Influenciador de la Decisión Final
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-3">
           <div class="card-elevated" style="border-top: 5px solid #0056db;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -1377,12 +1476,12 @@
             <div class="pill-kicker"><i class="fa-solid fa-chart-line"></i> Medición y Tracción</div>
             <h2 class="slide-title">El Flywheel de Marketing &amp; <span>KPIs de Control</span></h2>
           </div>
-          <span style="font-size: 13px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
+          <span style="font-size: 12px; font-weight: 700; color: #0056DB; background: #eff6ff; padding: 6px 14px; border-radius: 20px; border: 1px solid #bfdbfe;">
             Círculo Virtuoso de Sell-In &amp; Sell-Out
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; flex-grow: 1; align-items: stretch;">
+        <div class="responsive-grid-split">
           <div class="card-elevated" style="border-left: 5px solid #0056db;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -1492,19 +1591,19 @@
 
   <!-- BARRA DE CONTROLES INFERIOR -->
   <div class="controls-bar">
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <span id="slideIndicator" style="font-weight: 700; color: #ffffff;">Diapositiva 1 de 12</span>
-      <span style="color: #64748b; font-size: 12px;">• Usa ← / →</span>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span id="slideIndicator" style="font-weight: 700; color: #ffffff; white-space: nowrap;">Diapositiva 1 de 12</span>
+      <span class="hint-keyboard" style="color: #64748b; font-size: 12px;">• Usa ← / → o Desliza</span>
       <button class="btn-fullscreen" id="fullscreenBtn" title="Alternar Pantalla Completa">
-        <i class="fa-solid fa-expand"></i> Pantalla Completa
+        <i class="fa-solid fa-expand"></i> <span style="display: inline-block;">Pantalla Completa</span>
       </button>
     </div>
 
     <div class="slide-dots" id="dotsContainer"></div>
 
     <div class="nav-buttons">
-      <button class="btn-nav" id="prevBtn"><i class="fa-solid fa-chevron-left"></i> Anterior</button>
-      <button class="btn-nav" id="nextBtn" style="background: var(--azul-primario);">Siguiente <i class="fa-solid fa-chevron-right"></i></button>
+      <button class="btn-nav" id="prevBtn"><i class="fa-solid fa-chevron-left"></i> <span class="btn-text">Anterior</span></button>
+      <button class="btn-nav" id="nextBtn" style="background: var(--azul-primario);"><span class="btn-text">Siguiente</span> <i class="fa-solid fa-chevron-right"></i></button>
     </div>
   </div>
 
@@ -1533,6 +1632,7 @@
       slides.forEach((slide, index) => {
         if (index + 1 === currentSlide) {
           slide.classList.add('active');
+          slide.scrollTop = 0; // Reiniciar scroll al cambiar
         } else {
           slide.classList.remove('active');
         }
@@ -1546,16 +1646,16 @@
         }
       });
 
-      slideIndicator.textContent = `Diapositiva ${currentSlide} de ${totalSlides}`;
+      slideIndicator.textContent = `${currentSlide} / ${totalSlides}`;
       
       prevBtn.disabled = currentSlide === 1;
       prevBtn.style.opacity = currentSlide === 1 ? '0.45' : '1';
       prevBtn.style.cursor = currentSlide === 1 ? 'not-allowed' : 'pointer';
 
       if (currentSlide === totalSlides) {
-        nextBtn.innerHTML = 'Reiniciar <i class="fa-solid fa-rotate-right"></i>';
+        nextBtn.innerHTML = '<span class="btn-text">Reiniciar</span> <i class="fa-solid fa-rotate-right"></i>';
       } else {
-        nextBtn.innerHTML = 'Siguiente <i class="fa-solid fa-chevron-right"></i>';
+        nextBtn.innerHTML = '<span class="btn-text">Siguiente</span> <i class="fa-solid fa-chevron-right"></i>';
       }
     }
 
@@ -1587,16 +1687,16 @@
     fullscreenBtn.addEventListener('click', () => {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
-        fullscreenBtn.innerHTML = '<i class="fa-solid fa-compress"></i> Salir de Pantalla Completa';
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-compress"></i> <span>Salir</span>';
       } else {
         document.exitFullscreen().catch(() => {});
-        fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i> Pantalla Completa';
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span>Pantalla Completa</span>';
       }
     });
 
     document.addEventListener('fullscreenchange', () => {
       if (!document.fullscreenElement) {
-        fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i> Pantalla Completa';
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i> <span>Pantalla Completa</span>';
       }
     });
 
@@ -1610,6 +1710,38 @@
         fullscreenBtn.click();
       }
     });
+
+    // GESTOS TÁCTILES (SWIPE EN PANTALLAS TÁCTILES Y MÓVILES)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    const deck = document.getElementById('presentationContainer');
+
+    deck.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    deck.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+      // Validar que el gesto sea principalmente horizontal y de al menos 45px
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+        if (diffX < 0) {
+          nextSlide(); // Deslizar hacia la izquierda = Siguiente
+        } else {
+          prevSlide(); // Deslizar hacia la derecha = Anterior
+        }
+      }
+    }
 
     updatePresentation();
   </script>
