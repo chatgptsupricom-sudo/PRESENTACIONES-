@@ -1088,6 +1088,196 @@
       .benefit-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
     }
 
+
+    /* --- Slide de comunicacion asertiva --- */
+    .sub-lead {
+      font-size: clamp(14px, 1.05vw, 16px);
+      color: #475569;
+      margin-top: 6px;
+    }
+    .comm-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: clamp(12px, 1.6vw, 22px);
+      flex: 1;
+      min-height: 0;
+    }
+    .comm-principles {
+      display: grid;
+      grid-template-rows: repeat(4, minmax(0, 1fr));
+      gap: clamp(8px, 1.1vh, 13px);
+      min-height: 0;
+    }
+    .principle {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: clamp(10px, 1.2vw, 16px);
+      align-items: center;
+      background: #fff;
+      border: 1px solid rgba(7, 145, 244, 0.18);
+      border-radius: 14px;
+      padding: clamp(10px, 1.2vw, 16px) clamp(12px, 1.4vw, 20px);
+      box-shadow: var(--sombra-card);
+      border-left: 4px solid #0791f4;
+    }
+    .principle .p-ico {
+      width: clamp(34px, 3.2vw, 44px);
+      height: clamp(34px, 3.2vw, 44px);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(7, 145, 244, 0.12);
+      color: #0056db;
+      font-size: clamp(14px, 1.15vw, 18px);
+      flex: none;
+    }
+    .principle h4 {
+      font-size: clamp(15px, 1.15vw, 18px);
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+    .principle p {
+      font-size: clamp(13.5px, 1vw, 15.5px);
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    .comm-filters {
+      background: linear-gradient(150deg, #021235 0%, #00256e 55%, #004ecc 100%);
+      border-radius: 20px;
+      padding: clamp(16px, 1.9vw, 28px);
+      box-shadow: var(--sombra-3d);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(8px, 1.2vh, 14px);
+      min-height: 0;
+    }
+    .comm-filters .cf-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: clamp(11.5px, 0.82vw, 13px);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7dd3fc;
+    }
+    .comm-filters h3 {
+      font-size: clamp(18px, 1.65vw, 25px);
+      color: #ffffff;
+      line-height: 1.15;
+    }
+    .cf-list {
+      list-style: none;
+      counter-reset: filtro;
+      display: grid;
+      gap: clamp(8px, 1.2vh, 13px);
+      margin-top: 2px;
+    }
+    .cf-list li {
+      counter-increment: filtro;
+      position: relative;
+      padding-left: 42px;
+      color: #cbd5e1;
+    }
+    .cf-list li::before {
+      content: counter(filtro);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(125, 211, 252, 0.18);
+      border: 1px solid rgba(125, 211, 252, 0.5);
+      color: #7dd3fc;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .cf-list b {
+      display: block;
+      color: #ffffff;
+      font-size: clamp(14.5px, 1.08vw, 17px);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .cf-list span {
+      font-size: clamp(13px, 0.95vw, 15px);
+      line-height: 1.4;
+    }
+    .cf-note {
+      margin-top: 4px;
+      padding-top: clamp(8px, 1.2vh, 13px);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: clamp(13px, 0.95vw, 15px);
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+
+    /* --- Bloque biometrico --- */
+    .bio-card {
+      display: grid;
+      grid-template-columns: clamp(108px, 10.5vw, 158px) 1fr;
+      gap: clamp(10px, 1.3vw, 16px);
+      background: #fff;
+      border: 1px solid rgba(7, 145, 244, 0.18);
+      border-radius: 18px;
+      padding: clamp(9px, 1.1vw, 13px);
+      box-shadow: var(--sombra-card);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .bio-photo {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #e2e8f0;
+      min-height: 0;
+    }
+    .bio-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 42%;
+      display: block;
+    }
+    .bio-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      min-width: 0;
+    }
+    .bio-text .nc-head { font-size: clamp(14px, 1.1vw, 17px); }
+    .bio-text p {
+      font-size: clamp(13px, 0.96vw, 15px);
+      color: #475569;
+      line-height: 1.42;
+    }
+
+    @media (max-width: 1100px) {
+      .comm-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .comm-principles { grid-template-rows: repeat(4, auto); }
+      .schedule-hero { grid-template-columns: 1fr; }
+    }
+
+
+    /* Pantallas de poca altura: recupera aire en la rejilla de valores */
+    @media (max-height: 830px) and (min-width: 1100px) {
+      .grid-4-values {
+        gap: clamp(7px, 0.9vh, 11px);
+      }
+      .grid-4-values .card-elevated {
+        padding: clamp(8px, 1vw, 16px);
+      }
+      .slide-header { margin-bottom: 7px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1545,8 +1735,78 @@
       </div>
     </div>
 
+    <!-- ============================================================
+         SLIDE 5: COMUNICACIÓN ASERTIVA
+         ============================================================ -->
+    <div class="slide" id="slide5">
+
+      <div class="slide-content">
+        <div class="slide-header">
+          <div>
+            <div class="pill-kicker"><i class="fa-solid fa-comments"></i> Cómo nos comunicamos</div>
+            <h2 class="slide-title">Comunicación asertiva <span>y trabajo en equipo</span></h2>
+            <p class="sub-lead">La claridad protege la confianza del equipo. Así nos comunicamos.</p>
+          </div>
+          <span class="chip hide-sm">Equipo</span>
+        </div>
+
+        <div class="comm-grid">
+
+          <div class="comm-principles">
+
+            <div class="principle">
+              <div class="p-ico"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+              <div>
+                <h4>Ir a la fuente directa</h4>
+                <p>Si hay una duda, inquietud o desacuerdo, se habla primero con la persona involucrada o con la supervisión.</p>
+              </div>
+            </div>
+
+            <div class="principle">
+              <div class="p-ico"><i class="fa-solid fa-bullhorn"></i></div>
+              <div>
+                <h4>Canales oficiales</h4>
+                <p>La información sobre proyectos y decisiones se confirma por las vías formales. Las suposiciones no son información.</p>
+              </div>
+            </div>
+
+            <div class="principle">
+              <div class="p-ico"><i class="fa-solid fa-magnifying-glass"></i></div>
+              <div>
+                <h4>Verificar antes de asumir</h4>
+                <p>Antes de dar algo por cierto, se confirma el hecho con quien corresponde.</p>
+              </div>
+            </div>
+
+            <div class="principle">
+              <div class="p-ico"><i class="fa-solid fa-handshake-angle"></i></div>
+              <div>
+                <h4>Enfoque en soluciones</h4>
+                <p>Las conversaciones de trabajo buscan resolver y colaborar, no señalar.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <aside class="comm-filters">
+            <div class="cf-kicker"><i class="fa-solid fa-filter"></i> Regla práctica</div>
+            <h3>Los tres filtros antes de compartir</h3>
+
+            <ol class="cf-list">
+              <li><b>¿Es verídico?</b><span>¿Es un hecho o una suposición?</span></li>
+              <li><b>¿Es constructivo?</b><span>¿Aporta o mejora la situación?</span></li>
+              <li><b>¿Es el canal adecuado?</b><span>¿Hablo con quien puede resolverlo?</span></li>
+            </ol>
+
+            <p class="cf-note">Cuando la información circula sin confirmarse, se pierde tiempo y se rompe la confianza.</p>
+          </aside>
+
+        </div>
+      </div>
+    </div>
+
         <!-- SLIDE 5: CATEGORÍAS + CARRUSEL -->
-    <div class="slide" id="slide5" style="background: linear-gradient(135deg, #021235 0%, #00256e 55%, #004ecc 100%);">
+    <div class="slide" id="slide6" style="background: linear-gradient(135deg, #021235 0%, #00256e 55%, #004ecc 100%);">
       
       <div class="slide-content" style="justify-content: center; padding-bottom: 0;">
         <div class="slide-header">
@@ -1732,7 +1992,7 @@
     </div>
 
 <!-- SLIDE 6: NUESTRO ENGRANAJE -->
-    <div class="slide" id="slide6">
+    <div class="slide" id="slide7">
       
       <div class="slide-content">
         <div class="slide-header">
@@ -1834,7 +2094,7 @@
     <!-- ============================================================
          SLIDE 8: CÓDIGO DE VESTIMENTA
          ============================================================ -->
-    <div class="slide" id="slide7">
+    <div class="slide" id="slide8">
 
       <div class="slide-content">
         <div class="slide-header">
@@ -1911,63 +2171,58 @@
       </div>
     </div>
 
-        <!-- ============================================================
-         SLIDE 9: NORMATIVA INTERNA (convivencia + uso de recursos)
+    <!-- ============================================================
+         SLIDE 8: USO RESPONSABLE Y CONVIVENCIA
          ============================================================ -->
-    <div class="slide" id="slide8">
+    <div class="slide" id="slide9">
 
       <div class="slide-content">
         <div class="slide-header">
           <div>
-            <div class="pill-kicker"><i class="fa-solid fa-shield-halved"></i> Normativa interna</div>
-            <h2 class="slide-title">Cómo nos comportamos <span>y cómo usamos los recursos</span></h2>
+            <div class="pill-kicker"><i class="fa-solid fa-shield-halved"></i> Normas de la empresa</div>
+            <h2 class="slide-title">Uso responsable <span>y convivencia</span></h2>
           </div>
           <span class="chip hide-sm">POL-004</span>
         </div>
 
-        <div class="norm-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
-
-          <div class="norm-card green">
-            <div class="nc-head"><i class="fa-solid fa-handshake"></i> Respeto</div>
-            <p>Trato cordial y equitativo sin importar cargo ni antigüedad.</p>
-            <p><b>No se permiten</b> insultos, burlas ni humillaciones.</p>
-          </div>
-
-          <div class="norm-card green">
-            <div class="nc-head"><i class="fa-solid fa-scale-balanced"></i> Honestidad</div>
-            <p>Transparencia con clientes, compañeros y proveedores.</p>
-            <p><b>Reconocemos los errores</b> a tiempo.</p>
-          </div>
-
-          <div class="norm-card green">
-            <div class="nc-head"><i class="fa-solid fa-list-check"></i> Responsabilidad</div>
-            <p>Cumplimos lo que prometemos y asumimos nuestras decisiones.</p>
-            <p><b>Buscamos soluciones</b>, no culpables.</p>
-          </div>
-
-          <div class="norm-card">
-            <div class="nc-head"><i class="fa-solid fa-heart"></i> Sentido de pertenencia</div>
-            <p>Cuidamos la empresa como propia: su gente, sus equipos y su reputación.</p>
-            <p><b>Lo que cuidamos hoy</b> sostiene el negocio de mañana.</p>
-          </div>
+        <div class="norm-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); flex: 1;">
 
           <div class="norm-card">
             <div class="nc-head"><i class="fa-solid fa-lock"></i> Información y equipos</div>
-            <p>Datos de clientes, precios e inventarios son <b>confidenciales</b>.</p>
-            <p>Los equipos se usan <b>solo para el trabajo</b> y se devuelven en buen estado.</p>
+            <ul>
+              <li><i class="fa-solid fa-circle-check"></i> Datos de clientes, precios e inventarios son <b>confidenciales</b></li>
+              <li><i class="fa-solid fa-circle-check"></i> Se comparten solo para fines de la empresa</li>
+              <li><i class="fa-solid fa-circle-check"></i> Los equipos se devuelven en buen estado</li>
+            </ul>
           </div>
 
           <div class="norm-card red">
             <div class="nc-head"><i class="fa-solid fa-file-invoice-dollar"></i> Internet e informes</div>
-            <p>Prohibido el material impropio y descargar aplicaciones.</p>
+            <ul class="red-list">
+              <li><i class="fa-solid fa-circle-xmark"></i> Prohibido el material impropio</li>
+              <li><i class="fa-solid fa-circle-xmark"></i> Prohibido descargar o enviar aplicaciones</li>
+            </ul>
             <p><b>Falsificar un documento es causal de despido.</b></p>
           </div>
 
-        </div>
+          <div class="norm-card">
+            <div class="nc-head"><i class="fa-solid fa-comments"></i> Canal de denuncias</div>
+            <ul>
+              <li><i class="fa-solid fa-circle-check"></i> Gerencia de <b>Talento Humano</b></li>
+              <li><i class="fa-solid fa-circle-check"></i> Si el caso es grave, pasa a Gerencia General</li>
+              <li><i class="fa-solid fa-circle-check"></i> <b>Sin represalias</b> contra quien denuncia</li>
+            </ul>
+          </div>
 
-        <div class="callout-strip">
-          <span><i class="fa-solid fa-comments"></i> <b>Canal de denuncias:</b> Gerencia de Talento Humano · sin represalias</span>
-          <span><i class="fa-solid fa-ban"></i> <b>Acoso laboral o sexual:</b> tolerancia cero</span>
+          <div class="norm-card red">
+            <div class="nc-head"><i class="fa-solid fa-ban"></i> Acoso laboral o sexual</div>
+            <ul class="red-list">
+              <li><i class="fa-solid fa-circle-xmark"></i> <b>Tolerancia cero</b>, directo o indirecto</li>
+              <li><i class="fa-solid fa-circle-xmark"></i> Se canaliza por Talento Humano</li>
+            </ul>
+            <p>La empresa actúa para mantener un ambiente sano y respetuoso.</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -1975,7 +2230,7 @@
     <!-- ============================================================
          SLIDE 9: ALMACÉN (celular + higiene y seguridad)
          ============================================================ -->
-    <div class="slide" id="slide9">
+    <div class="slide" id="slide10">
 
       <div class="slide-content">
         <div class="slide-header">
@@ -2018,6 +2273,7 @@
               <ul class="red-list">
                 <li><i class="fa-solid fa-circle-xmark"></i> Bebidas alcohólicas en el centro de trabajo</li>
                 <li><i class="fa-solid fa-circle-xmark"></i> Drogas o sustancias psicotrópicas</li>
+                <li><i class="fa-solid fa-circle-xmark"></i> Difundir información no verificada</li>
                 <li><i class="fa-solid fa-circle-xmark"></i> Sustraer bienes de compañeros</li>
               </ul>
             </div>
@@ -2028,15 +2284,15 @@
     </div>
 
     <!-- ============================================================
-         SLIDE 10: TU DÍA A DÍA
+         SLIDE 10: TU DÍA A DÍA + REGISTRO BIOMÉTRICO
          ============================================================ -->
-    <div class="slide" id="slide10">
+    <div class="slide" id="slide11">
 
       <div class="slide-content">
         <div class="slide-header">
           <div>
             <div class="pill-kicker"><i class="fa-solid fa-clock"></i> Tu día a día</div>
-            <h2 class="slide-title">Horario y <span>lo que ofrecemos</span></h2>
+            <h2 class="slide-title">Horario, registro <span>y lo que ofrecemos</span></h2>
           </div>
           <span class="chip hide-sm">¡Bienvenido al equipo!</span>
         </div>
@@ -2046,13 +2302,18 @@
           <div class="hero-cell main">
             <span class="lbl">Jornada laboral</span>
             <span class="big">8:00 am – 4:30 pm</span>
-            <span class="sub">Lunes a viernes</span>
+            <span class="sub">Lunes a viernes · 30 minutos de almuerzo</span>
           </div>
 
-          <div class="hero-cell">
-            <span class="lbl">Almuerzo</span>
-            <span class="big">30 min</span>
-            <span class="sub">Dentro de la jornada</span>
+          <div class="bio-card">
+            <figure class="bio-photo">
+              <img src="assets/img/biometrico.jpg" alt="Terminal de registro biométrico SUPRICOM">
+            </figure>
+            <div class="bio-text">
+              <div class="nc-head"><i class="fa-solid fa-fingerprint"></i> Registro biométrico</div>
+              <p>Marca tu huella <b>al llegar y antes de irte</b>.</p>
+              <p>Ese registro es la constancia de tu jornada y es <b>obligatorio</b>: no se puede omitir.</p>
+            </div>
           </div>
 
         </div>
@@ -2088,7 +2349,7 @@
     </div>
 
         <!-- SLIDE 7: BIENVENIDA Y PRIMEROS PASOS -->
-    <div class="slide" id="slide11">
+    <div class="slide" id="slide12">
       
       <div class="slide-content">
         <div class="slide-header">
@@ -2175,7 +2436,7 @@
               </div>
 
               <p style="font-size: clamp(16px, 1.08vw, 18px); line-height: 1.6; color: #cbd5e1; margin-bottom: 20px;">
-                En SUPRICOM valoramos tu proactividad, ganas de aprender y dedicación. Estamos convencidos de que tu aporte marcará un hito positivo en nuestros resultados y en el servicio a todos nuestros clientes.
+                En SUPRICOM valoramos tu proactividad, ganas de aprender y dedicación. Estamos convencidos que tu aporte marcará un hito positivo en nuestros resultados y en el servicio a todos nuestros clientes.
               </p>
 
               <div style="background: rgba(255, 255, 255, 0.06); padding: 16px 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); display: flex; flex-direction: column; gap: 10px;">
